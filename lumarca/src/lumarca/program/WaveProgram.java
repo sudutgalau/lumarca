@@ -3,6 +3,7 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
+import lumarca.obj.Rectangle;
 import lumarca.util.Coord;
 import lumarca.util.Util;
 
@@ -24,11 +25,11 @@ public class WaveProgram extends LineProgram {
 
 	@Override
 	public void display(GL gl) {
-
+		
 		for (int lineNum = 0; lineNum < lumarca.LINE; lineNum++) {
-
+			
 			Coord coord = lumarca.lineMap.lines[lineNum].bottom;
-
+			
 			Util.drawLine(
 						gl,
 						new Coord(coord.x/1024f, 1f, 1024f - coord.x/1024f),

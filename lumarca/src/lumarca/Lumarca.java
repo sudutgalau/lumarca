@@ -234,7 +234,7 @@ public class Lumarca extends PApplet {
 			currentProgram = PROGRAM.CALAB.eval(this);
 			break;
 		case '2':
-			currentProgram = PROGRAM.SHOW.eval(this);
+			currentProgram = PROGRAM.ONE_WIRE.eval(this);
 			break;
 		case '3':
 			currentProgram = PROGRAM.WAVE.eval(this);
@@ -243,7 +243,7 @@ public class Lumarca extends PApplet {
 			currentProgram = PROGRAM.GAME.eval(this);
 			break;
 		case '5':
-			currentProgram = PROGRAM.ONE_WIRE.eval(this);
+			currentProgram = PROGRAM.SHOW.eval(this); 
 			break;
 		case '6':
 			currentProgram = PROGRAM.WAVE2.eval(this);
