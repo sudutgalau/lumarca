@@ -153,8 +153,6 @@ public class Lumarca extends PApplet {
 		
 		lineMap = new LineMap(LINE, DEFAULT_CAMERA_X, DEFAULT_CAMERA_Y, DEFAULT_CAMERA_Z, "testMap" + LINE +".txt");
 
-//		obj = new Obj("/Users/matthewparker/Documents/java/workspace/thesis/src/data/male head10.txt");
-
 		currentProgram = new SnakeProgram(this);
 		currentProgram = new WaveProgram(this);
 		currentProgram = new CalabProgram(this);
@@ -220,6 +218,7 @@ public class Lumarca extends PApplet {
 	public void mousePressed() {
 		cameraRot++;
 
+		currentProgram.mousePressed();
 	}
 
 	public void keyPressed() { // adjust globe[] accordingly
