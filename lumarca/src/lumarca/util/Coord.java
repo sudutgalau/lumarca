@@ -1,6 +1,7 @@
 package lumarca.util;
 
 import objloader.Vertex;
+import sun.text.Normalizer;
 import lumarca.Lumarca;
 
 
@@ -89,6 +90,10 @@ public class Coord {
 		this.z += z;
 	}
 	
+	public static Coord mult(Coord coord, float f){
+		return new Coord(coord.x * f, coord.y * f, coord.z * f);
+	}
+	
 //	
 //	public void minus(Coord coord) {
 //		if (coord != null) {
@@ -126,6 +131,7 @@ public class Coord {
 //		this.y += y;
 //	}
 //	
+	
 	public float distance(Coord coord){
 		return (int)(Math.sqrt(Math.pow(coord.x - x, 2) + Math.pow(coord.y - y, 2) + Math.pow(coord.z - z, 2)));
 	}

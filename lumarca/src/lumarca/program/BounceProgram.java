@@ -98,20 +98,20 @@ public class BounceProgram extends LineProgram {
 		Coord dCenter = diamond.getCenter();
 		Coord rCenter = rectangle.getCenter();
 
-//		return true;
+		return true;
 		
-		return 
-		((diamond.getCenter().x < rCenter.x + rectangle.width/2) && 
-				(diamond.getCenter().x > rCenter.x - rectangle.width/2) && 
-				(diamond.getCenter().z < rCenter.z + rectangle.depth/2) &&
-				(diamond.getCenter().z > rCenter.z - rectangle.depth/2));
+//		return 
+//		((diamond.getCenter().x < rCenter.x + rectangle.width/2) && 
+//				(diamond.getCenter().x > rCenter.x - rectangle.width/2) && 
+//				(diamond.getCenter().z < rCenter.z + rectangle.depth/2) &&
+//				(diamond.getCenter().z > rCenter.z - rectangle.depth/2));
 
 	}
 	
 	public boolean inTolerance(int color1, int color2){
 		
 		return PApplet.dist(pApplet.red(color1), pApplet.green(color1), pApplet.blue(color1),
-				pApplet.red(color2), pApplet.green(color2), pApplet.blue(color2)) > 50f;
+				pApplet.red(color2), pApplet.green(color2), pApplet.blue(color2)) > 70f;
 	}
 	
 	public void reverse(){
@@ -126,7 +126,7 @@ public class BounceProgram extends LineProgram {
 	
 	public int getIndex(float x, int y){
 //		System.out.println(x);
-		return (cam.height - y - 1) * cam.width + (cam.width - (int)x/4 - 1);
+		return (cam.height - y - 1) * cam.width + (cam.width - (int)x - 1);
 //		return y * cam.width + (cam.width - (int)x/4 - 1);
 //		return y * cam.width + (int)x/4;
 	}
@@ -177,6 +177,7 @@ public class BounceProgram extends LineProgram {
 					tx += x;
 					ty += y;
 					numPts++;
+					pimg2.pixels[getIndex(x, y)] = lumarca.color(255);
 					
 //					if(minY < y){
 //						if(prev){
@@ -199,10 +200,14 @@ public class BounceProgram extends LineProgram {
 //						break;
 //					}
 					
-				} 
+				} else {
+					pimg2.pixels[getIndex(x, y)] = lumarca.color(0);
+				}
 			}
 			
 		}
+		
+		pimg2.updatePixels();
 
 		if(numPts > 0){
 			rectangle.center.x = 4 * tx/numPts;
@@ -235,7 +240,7 @@ public class BounceProgram extends LineProgram {
 					snakeSize -= 0.5f;
 
 //					diamond = new Diamond(diamond.getCenter(), snakeSize * 5f);
-					rectangle = new Rectangle(rectangle.getCenter(), snakeSize * 10, 35, snakeSize * 10);
+//					rectangle = new Rectangle(rectangle.getCenter(), snakeSize * 10, 35, snakeSize * 10);
 					
 				} else {
 					System.out.println("miss");
@@ -308,9 +313,13 @@ public class BounceProgram extends LineProgram {
 //				shape.drawWireFrame(gl);
 //			}
 
+			
 			lumarca.lineMap.drawShape(gl, new Coord(0, 0, 1), diamond);
 			lumarca.lineMap.drawShape(gl, new Coord(1, 0, 0), rectangle);
 		}
+
+//		pApplet.image(pimg2, 400, 1000);
+//		pApplet.image(cam, 700, 1000);
 
 //		rectangle.drawWireFrame(gl);
 //		diamond.drawWireFrame(gl);
@@ -318,6 +327,10 @@ public class BounceProgram extends LineProgram {
 	}
 
 	public void keyPressed() { 
+
+		
+		pimg.pixels = cam.pixels.clone();
+		pimg.updatePixels();
 		
 		if(lumarca.key == 'p') {
 			init();
