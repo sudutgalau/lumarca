@@ -44,25 +44,25 @@ public class CamProgram extends LineProgram {
 	public boolean inTolerance(int color1, int color2){
 		
 		return PApplet.dist(pApplet.red(color1), pApplet.green(color1), pApplet.blue(color1),
-				pApplet.red(color2), pApplet.green(color2), pApplet.blue(color2)) > 100f;
+				pApplet.red(color2), pApplet.green(color2), pApplet.blue(color2)) > 70f;
 	}
 
 	public void update() {
 		if (cam.available()) {
 			cam.read();
 
-			pApplet.image(cam, 0, lumarca.height/2);
+//			pApplet.image(cam, 0, lumarca.height/2);
 		}
 	}
 	
 	public void display(GL gl) {
 		
-//		if(lumarca.frameCount%1 == 0){
-			for(int i = pimgs.length - 2; i > 0 ; i--){
+		if(lumarca.frameCount%3 == 0){
+			for(int i = pimgs.length - 1; i > 0 ; i--){
 				pimgs[i].pixels = pimgs[i - 1].pixels.clone();
 				pimgs[i].updatePixels();
 			}
-//		}
+		}
 		
 		for(int x = 0; x < cam.width; x++){
 			for(int y = 0; y < cam.height; y++){
@@ -70,7 +70,7 @@ public class CamProgram extends LineProgram {
 						cam.pixels[getIndex(x, y)], 
 						bg.pixels[getIndex(x, y)])){
 //					System.out.println("DIFF");
-					pimgs[0].pixels[getIndex(x, y)] = pApplet.color(255);
+					pimgs[0].pixels[getIndex(x, y)] = cam.pixels[getIndex(x, y)];
 					
 				} else {
 					pimgs[0].pixels[getIndex(x, y)] = pApplet.color(0);
@@ -117,15 +117,20 @@ public class CamProgram extends LineProgram {
 //						 System.out.println("x: " + line.bottom.x/ratio + " Y: " +
 //								 y + " = " + ratio);
 						 
-						if (pimgs[i].pixels[getIndex(line.bottom.x/ratio, y)]  != pApplet.color(0)) {
+						if (pimgs[0].pixels[getIndex(line.bottom.x/ratio, y)]  != pApplet.color(0)) {
 
 //							 System.out.println("x: " + line.bottom.x/ratio + " Y: " +
 //									 y + " = " + i);
+
+							float r = 1;//((float)(pApplet.red(pimgs[i].pixels[getIndex(line.bottom.x/ratio, y)])))/255f;
+							float g = 0;//((float)(pApplet.green(pimgs[i].pixels[getIndex(line.bottom.x/ratio, y)])))/255f;
+							float b = 0;//((float)(pApplet.blue(pimgs[i].pixels[getIndex(line.bottom.x/ratio, y)])))/255f;
+							
 							
 							bottom.y = line.bottom.y - y * 2;
-							top.y = bottom.y + 1;
+							top.y = bottom.y + 3;
 
-							Util.drawLineNoDots(gl, new Coord(1, 0, 1), bottom, top);
+							Util.drawLineNoDots(gl, new Coord(r, g, b), bottom, top);
 							
 //							if (maxY > y) {
 //								maxY = y;
@@ -195,9 +200,9 @@ public class CamProgram extends LineProgram {
 //		}
 		
 		
-		for(int i = 0; i < pimgs.length; i++){
-			pApplet.image(pimgs[i], i * cam.width, lumarca.height/3);
-		}
+//		for(int i = 0; i < pimgs.length; i++){
+//			pApplet.image(pimgs[i], i * cam.width, lumarca.height/3);
+//		}
 	}
 
 	@Override

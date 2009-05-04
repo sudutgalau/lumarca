@@ -29,6 +29,9 @@ public class LineMap extends ProcessingObject{
 	public float projectorY;
 	public float projectorZ;
 
+	public Coord maxPosition = new Coord(-1000,-1000,-1000);
+	public Coord minPosition = new Coord(20000,20000,20000);
+	
 	float maxY = 0;
 	float minY = 1000;
 
@@ -66,8 +69,10 @@ public class LineMap extends ProcessingObject{
 			if (Lumarca.WIN_HEIGHT - map[i] < minY) {
 				minY = Lumarca.WIN_HEIGHT - map[i];
 			}
-
 		}
+		
+		
+		
 
 //		minY = 10;//-Lumarca.WIN_HEIGHT;
 //		maxY = Lumarca.WIN_HEIGHT/2.0f;
@@ -114,29 +119,32 @@ public class LineMap extends ProcessingObject{
 							yIntersect, camDiff), 
 					new Coord(
 							projectorX - ((projectorX - (lineCount * (Lumarca.WIN_WIDTH/lineNum))) / camDiff) * yIntersect,
-							minY - 900,
+							minY - Lumarca.WIN_HEIGHT/3,
 							projectorZ - (projectorZ / camDiff) * yIntersect));
 			
-// Coord coord = new Coord(
-//							(projector_x - (lineNum * 4 + 0) / camDiff) * yIntersect, 
-//							((projector_y - Lumarca.WIN_HEIGHT + map[lineNum])/ camDiff) * yIntersect,
-//							((projector_z - 0f) / camDiff) * yIntersect,
-//							yIntersect, camDiff);
-//							
-//							//,
-//					new Coord(
-//					((projector_x - (lineNum * 4 + 0)) / camDiff) * yIntersect,
-//					((projector_y - Lumarca.WIN_HEIGHT + map[lineNum])/ camDiff) * yIntersect, 
-//					((projector_z - 0f) / camDiff) * yIntersect,
-//					yIntersect, camDiff));
-
-//			zCoords[lineNum] = new Coord(lines[lineNum].x * yIntersect,
-//					lines[lineNum].y * yIntersect,
-//					lines[lineNum].z * yIntersect);
-			
-//			Coord coord = lines[lineNum];
 		}
 		
+		
+		for(Line line: lines){
+			if(line.bottom.x > maxPosition.x){
+				maxPosition.x = line.bottom.x;
+			}
+			if(line.bottom.x < minPosition.x){
+				minPosition.x = line.bottom.x;
+			}
+			if(line.bottom.y > maxPosition.y){
+				maxPosition.y = line.bottom.y;
+			}
+			if(line.bottom.y < minPosition.y){
+				minPosition.y = line.bottom.y;
+			}
+			if(line.bottom.z > maxPosition.z){
+				maxPosition.z = line.bottom.z;
+			}
+			if(line.bottom.z < minPosition.z){
+				minPosition.z = line.bottom.z;
+			}
+		}
 
 	}
 

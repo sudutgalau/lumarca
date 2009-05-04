@@ -228,6 +228,8 @@ public class Lumarca extends PApplet {
 		
 		currentProgram.keyPressed();
 		
+		LineProgram cp = currentProgram;
+		
 		switch (key) {
 		case '1':
 			currentProgram = PROGRAM.CALAB.eval(this);
@@ -261,6 +263,10 @@ public class Lumarca extends PApplet {
 			break;
 		default:
 			break;
+		}
+		
+		if(cp != currentProgram){
+			cp.exit();
 		}
 	}
 

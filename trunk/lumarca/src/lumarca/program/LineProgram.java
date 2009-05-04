@@ -27,4 +27,6 @@ public abstract class LineProgram extends ProcessingObject{
 	public void setLumarca(Lumarca lumarca) {
 		this.lumarca = lumarca;
 	}
+	
+	public void exit(){}
 }
