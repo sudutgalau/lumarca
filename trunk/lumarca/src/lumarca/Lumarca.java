@@ -64,7 +64,7 @@ public class Lumarca extends PApplet {
 	
 	private enum PROGRAM {
 		CALAB, WAVE, WAVE2, SHOW, GAME, ONE_WIRE, 
-		OBJ_PROGRAM, TIMER, BOUNCE, CAM;
+		OBJ_PROGRAM, TIMER, BOUNCE, CAM, SNAKE;
 		LineProgram eval(Lumarca lumarca) {
 			switch (this) {
 			case CALAB:
@@ -87,6 +87,8 @@ public class Lumarca extends PApplet {
 				return new BounceProgram(lumarca, camera);
 			case CAM:
 				return new CamProgram(lumarca, camera);
+			case SNAKE:
+//				return new MouseSnakeProgram(lumarca);
 			default:
 				return new CalabProgram(lumarca);
 			}
@@ -260,6 +262,9 @@ public class Lumarca extends PApplet {
 			break;
 		case '0':
 			currentProgram = PROGRAM.CAM.eval(this);
+			break;
+		case '-':
+			currentProgram = PROGRAM.SNAKE.eval(this);
 			break;
 		default:
 			break;
