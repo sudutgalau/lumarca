@@ -14,6 +14,7 @@ import lumarca.program.GameProgram;
 import lumarca.program.IndividualLineProgram;
 import lumarca.program.LineProgram;
 import lumarca.program.ObjProgram;
+import lumarca.program.OtherSnakeProgram;
 import lumarca.program.SnakeProgram;
 import lumarca.program.WaveProgram;
 import lumarca.program.WaveProgram2;
@@ -88,7 +89,7 @@ public class Lumarca extends PApplet {
 			case CAM:
 				return new CamProgram(lumarca, camera);
 			case SNAKE:
-//				return new MouseSnakeProgram(lumarca);
+				return new OtherSnakeProgram(lumarca);
 			default:
 				return new CalabProgram(lumarca);
 			}
