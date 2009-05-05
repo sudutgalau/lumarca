@@ -7,28 +7,32 @@
 	<classpathentry kind="lib" path="lib/jsminim.jar"/>
 	<classpathentry kind="lib" path="lib/core.jar"/>
 	<classpathentry kind="lib" path="lib/mp3spi1.9.4.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/opengl.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-linux-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-linux-i586.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-macosx-ppc.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-linux-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-linux-i586.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-macosx-ppc.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewparker/Documents/Resources/Java/libraries/opengl/library/jogl.jar"/>
-	<classpathentry kind="lib" path="/Applications/Processing 0145/libraries/video/library/video.jar"/>
 	<classpathentry kind="lib" path="lib/jl1.0.jar"/>
 	<classpathentry kind="lib" path="lib/tritonus_aos.jar"/>
 	<classpathentry kind="lib" path="lib/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="lumarca/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-macosx-ppc.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jogl.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-macosx-ppc.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jogl-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/opengl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="lumarca/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/video.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
