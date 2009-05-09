@@ -34,14 +34,14 @@ public class WaveProgram2 extends LineProgram {
 					new Coord(0f, 1f, 0f),
 					new Coord(coord.x, 
 							coord.y + 
-							(PApplet.sin(lumarca.lineMap.projectorZ- coord.z / 100 + waveRot * 50) * 150 - 150 +
-							PApplet.sin(lumarca.lineMap.projectorX- coord.x / 100 + waveRot * 50) * 150 - 250)/2f,
+							(PApplet.sin(lumarca.lineMap.projectorZ- coord.z / 100 + waveRot * 50) * 150 - 250 +
+							PApplet.sin(lumarca.lineMap.projectorX- coord.x / 100 + waveRot * 50) * 150 - 350)/2f,
 							coord.z),
 					new Coord(coord.x, 
 												
 							coord.y + 
-							(PApplet.sin(lumarca.lineMap.projectorZ- coord.z / 100 + waveRot * 50) * 150 - 100 +
-							PApplet.sin(lumarca.lineMap.projectorX- coord.x / 100 + waveRot * 50) * 150 - 200)/2f,
+							(PApplet.sin(lumarca.lineMap.projectorZ- coord.z / 100 + waveRot * 50) * 150 - 200 +
+							PApplet.sin(lumarca.lineMap.projectorX- coord.x / 100 + waveRot * 50) * 150 - 300)/2f,
 							
 							coord.z));
 			

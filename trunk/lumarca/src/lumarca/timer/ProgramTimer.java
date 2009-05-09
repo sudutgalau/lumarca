@@ -19,7 +19,7 @@ public class ProgramTimer extends ProcessingObject{
 	
 	public boolean active = false;
 	
-	private LineProgram program;
+	public LineProgram program;
 
 	public ProgramTimer(long interval, long length, LineProgram program) {
 		this.interval = interval;
