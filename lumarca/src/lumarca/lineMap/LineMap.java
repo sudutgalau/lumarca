@@ -31,6 +31,7 @@ public class LineMap extends ProcessingObject{
 
 	public Coord maxPosition = new Coord(-1000,-1000,-1000);
 	public Coord minPosition = new Coord(20000,20000,20000);
+	public Coord midPosition;
 	
 	float maxY = 0;
 	float minY = 1000;
@@ -132,8 +133,8 @@ public class LineMap extends ProcessingObject{
 			if(line.bottom.x < minPosition.x){
 				minPosition.x = line.bottom.x;
 			}
-			if(line.bottom.y > maxPosition.y){
-				maxPosition.y = line.bottom.y;
+			if(line.top.y > maxPosition.y){
+				maxPosition.y = line.top.y;
 			}
 			if(line.bottom.y < minPosition.y){
 				minPosition.y = line.bottom.y;
@@ -146,6 +147,9 @@ public class LineMap extends ProcessingObject{
 			}
 		}
 
+		midPosition = new Coord((maxPosition.x + minPosition.x)/2,
+				(maxPosition.y + minPosition.y)/2,
+				(maxPosition.z + minPosition.z)/2);
 	}
 
 	public void drawShape(GL gl, Coord color, Shape shape){

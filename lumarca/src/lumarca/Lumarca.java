@@ -5,6 +5,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
 
 import lumarca.lineMap.LineMap;
 import lumarca.program.BounceProgram;
@@ -13,9 +14,10 @@ import lumarca.program.CamProgram;
 import lumarca.program.GameProgram;
 import lumarca.program.IndividualLineProgram;
 import lumarca.program.LineProgram;
-import lumarca.program.ObjProgram;
 import lumarca.program.OtherSnakeProgram;
+import lumarca.program.ObjProgram;
 import lumarca.program.SnakeProgram;
+import lumarca.program.VortexProgram;
 import lumarca.program.WaveProgram;
 import lumarca.program.WaveProgram2;
 import lumarca.program.hear.HearProgram;
@@ -61,11 +63,13 @@ public class Lumarca extends PApplet {
 	private final static int captureWidth = 320;
 	private final static int captureHeight = 240;
 	
+	private GLU glu = new GLU();
+	
 	private static LineProgram iwp;
 	
 	private enum PROGRAM {
 		CALAB, WAVE, WAVE2, SHOW, GAME, ONE_WIRE, 
-		OBJ_PROGRAM, TIMER, BOUNCE, CAM, SNAKE;
+		OBJ_PROGRAM, TIMER, BOUNCE, CAM, SNAKE, VORTEX;
 		LineProgram eval(Lumarca lumarca) {
 			switch (this) {
 			case CALAB:
@@ -90,6 +94,8 @@ public class Lumarca extends PApplet {
 				return new CamProgram(lumarca, camera);
 			case SNAKE:
 				return new OtherSnakeProgram(lumarca);
+			case VORTEX:
+				return new VortexProgram(lumarca);
 			default:
 				return new CalabProgram(lumarca);
 			}
@@ -159,6 +165,9 @@ public class Lumarca extends PApplet {
 		currentProgram = new SnakeProgram(this);
 		currentProgram = new WaveProgram(this);
 		currentProgram = new CalabProgram(this);
+		
+
+	    glu.gluPerspective( 5.0, (float)width / (float)height, 1.0, 1000.0 );
 	}
 
 
@@ -266,6 +275,9 @@ public class Lumarca extends PApplet {
 			break;
 		case '-':
 			currentProgram = PROGRAM.SNAKE.eval(this);
+			break;
+		case '=':
+			currentProgram = PROGRAM.VORTEX.eval(this);
 			break;
 		default:
 			break;

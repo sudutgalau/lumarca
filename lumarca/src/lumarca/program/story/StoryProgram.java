@@ -48,6 +48,8 @@ public class StoryProgram extends LineProgram {
 				} else if(!timer.active){
 					timers.get(0).trigger();
 				}
+			} else {
+				timer.program.exit();
 			}
 		}
 	}

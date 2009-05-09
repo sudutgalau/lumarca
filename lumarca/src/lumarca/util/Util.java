@@ -163,6 +163,19 @@ public class Util extends ProcessingObject {
 	
 	public static void drawLine(GL gl, Coord color, Coord top, Coord bottom){
 
+		//Line
+		gl.glColor3f(color.x, color.y, color.z);
+		gl.glBegin(GL.GL_LINE_STRIP);
+		gl.glVertex3f(bottom.x,
+					  bottom.y - LineMap.DOT_HEIGHT,
+					  bottom.z);
+		
+		gl.glVertex3f(top.x,
+					top.y + LineMap.DOT_HEIGHT,
+					top.z);
+		
+		gl.glEnd();
+		
 		//Bottom Dot
 		gl.glColor3f(1f,1f,1f);
 
@@ -175,19 +188,6 @@ public class Util extends ProcessingObject {
 		gl.glVertex3f(top.x,
 				top.y + LineMap.DOT_HEIGHT,
 				top.z);
-		
-		gl.glEnd();
-		
-		//Line
-		gl.glColor3f(color.x, color.y, color.z);
-		gl.glBegin(GL.GL_LINE_STRIP);
-		gl.glVertex3f(bottom.x,
-					  bottom.y - LineMap.DOT_HEIGHT,
-					  bottom.z);
-		
-		gl.glVertex3f(top.x,
-					top.y + LineMap.DOT_HEIGHT,
-					top.z);
 		
 		gl.glEnd();
 		
