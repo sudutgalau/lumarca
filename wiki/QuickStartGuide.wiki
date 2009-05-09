@@ -47,8 +47,8 @@ There are several Content Programs in the Lumarca library.  To activate these pr
 
 0:  This displays camera input, extruded over depth, onto the lumarca.  Press any buttom to reset the background for background subtraction.
 
+*Step 5 - Time to explore*:
 
+Now that you've seen some of what the lumarca can do, try looking at some of these programs and making your own content.  Look in the lumarca.program package to see the source code for these examples.
 
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Enjoy and Good Luck!
