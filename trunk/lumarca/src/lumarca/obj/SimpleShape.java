@@ -7,7 +7,6 @@ import javax.media.opengl.GL;
 
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
-import lumarca.util.ProcessingObject;
 import lumarca.util.Util;
 
 

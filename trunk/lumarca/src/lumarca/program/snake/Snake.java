@@ -5,9 +5,10 @@ package lumarca.program.snake;
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 
-import javax.media.opengl.*;
-import lumarca.lineMap.*;
-import lumarca.program.*;
+import javax.media.opengl.GL;
+
+import lumarca.lineMap.LineMap;
+import lumarca.program.OtherSnakeProgram;
 
 public class Snake {
     

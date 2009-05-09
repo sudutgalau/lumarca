@@ -4,14 +4,9 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
 import lumarca.lineMap.LineMap;
 import lumarca.obj.TrianglePlane;
-
 import processing.core.PApplet;
-import processing.core.PMatrix;
-import processing.core.PMatrix3D;
-import processing.core.PVector;
 
 
 public class Util extends ProcessingObject {

@@ -4,24 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.media.opengl.GL;
-import javax.sound.midi.Receiver;
 
 import lumarca.Lumarca;
-import lumarca.lineMap.Line;
 import lumarca.obj.Diamond;
 import lumarca.obj.Rectangle;
 import lumarca.obj.Shape;
 import lumarca.obj.TrianglePlane;
 import lumarca.util.Coord;
-import lumarca.util.MP3;
-import lumarca.util.Util;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.video.Capture;
-
-
-import ddf.minim.AudioPlayer;
 import ddf.minim.AudioSnippet;
 
 public class BounceProgram extends LineProgram {

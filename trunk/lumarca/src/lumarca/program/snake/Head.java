@@ -5,7 +5,7 @@ package lumarca.program.snake;
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 
-import lumarca.util.*;
+import lumarca.util.Coord;
 
 public class Head extends Section {
 

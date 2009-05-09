@@ -7,15 +7,14 @@ import java.util.TreeSet;
 
 import javax.media.opengl.GL;
 
-import objloader.ModelElement;
-import objloader.ModelSegment;
-import objloader.OBJModel;
-
 import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.HeightCoordComparator;
 import lumarca.util.Util;
+import objloader.ModelElement;
+import objloader.ModelSegment;
+import objloader.OBJModel;
 
 
 public class ObjFile extends Shape {

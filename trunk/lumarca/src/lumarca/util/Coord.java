@@ -1,7 +1,5 @@
 package lumarca.util;
 
-import objloader.Vertex;
-import sun.text.Normalizer;
 import lumarca.Lumarca;
 
 

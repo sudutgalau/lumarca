@@ -3,9 +3,6 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
-import lumarca.obj.Shape;
-
-import processing.core.PApplet;
 
 
 public class IndividualLineProgram extends LineProgram {

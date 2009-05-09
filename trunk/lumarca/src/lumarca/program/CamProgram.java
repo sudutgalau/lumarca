@@ -6,7 +6,6 @@ import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.video.Capture;

@@ -3,10 +3,8 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
-import lumarca.obj.Rectangle;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
 import processing.core.PApplet;
 
 
