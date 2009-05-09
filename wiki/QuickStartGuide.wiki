@@ -10,18 +10,19 @@ This guide will walk you through how to get started with the Lumarca library and
 
 *Step 1 - Download and setup the Lumarca library*:
 
-Using SVN download the library.  If you're using Eclipse, your classpath should be all set up for you.  If you are not, you will need to add all the libraries in the "lib" dir and set the "lib" directory for your native library folder for openGL.jar.
+Using SVN download the library.  If you're using Eclipse, your classpath should be all set up for you.  If you are not, you will need to add all the libraries in the "lib" dir to your classpath and set the "lib" directory for your native library folder for openGL.jar and jogl.jar.
 
 
 *Step 2 - Compile the code and run*:
 
-Compile the code and run the lumarca.Lumarca file as a Java Application.  The program will launch in fullscreen mode, but with the actual app only taking up 1024x768.  It will start running the Construction Program.  The different content programs will be explained in Step 4.
+Compile the code and run the lumarca.Lumarca class as a Java Application.  The program will launch in fullscreen mode, but with the actual app only taking up 1024x768.  It will start running the Construction Program.  The different content programs will be explained in Step 4.
 
 
 *Step 3 - Using Simulation Mode*:
 
 By default, the Lumarca library is in Projection Mode.  This means it will display the image that is meant to be projected on the Lumarca.  Press space bar toggle into Simulation Mode for any Content Program.  This will shift your view into a simulation of what the content will like on the Lumarca structure.  Press space bar again to toggle back to projection mode.
 
+While in simulation mode, click the mouse in any mode to skip ahead in the camera rotation. 
 
 *Step 4 - Running different Content Programs*:
 
