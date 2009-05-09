@@ -1,5 +1,5 @@
 #labels Featured
-#This Guide will get you to the point where you can see the content of the lumarca library.
+# This Guide will get you to the point where you can see the content of the lumarca library.
 
 = Introduction =
 
