@@ -5,10 +5,11 @@ package lumarca.program.snake;
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 
-import javax.media.opengl.*;
-import lumarca.lineMap.*;
-import lumarca.util.*;
-import lumarca.obj.*;
+import javax.media.opengl.GL;
+
+import lumarca.lineMap.LineMap;
+import lumarca.obj.Rectangle;
+import lumarca.util.Coord;
 
 public class Section extends Rectangle {
     

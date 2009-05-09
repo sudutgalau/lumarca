@@ -1,22 +1,12 @@
 package lumarca.program;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.image.MemoryImageSource;
-import java.awt.image.PixelGrabber;
-import java.net.URL;
-
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
 import processing.core.PApplet;
-import processing.core.PImage;
-import processing.opengl.PGraphicsOpenGL;
 
 
 public class WaterProgram extends LineProgram {

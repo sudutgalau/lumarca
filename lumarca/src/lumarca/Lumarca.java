@@ -14,8 +14,8 @@ import lumarca.program.CamProgram;
 import lumarca.program.GameProgram;
 import lumarca.program.IndividualLineProgram;
 import lumarca.program.LineProgram;
-import lumarca.program.OtherSnakeProgram;
 import lumarca.program.ObjProgram;
+import lumarca.program.OtherSnakeProgram;
 import lumarca.program.SnakeProgram;
 import lumarca.program.VortexProgram;
 import lumarca.program.WaveProgram;
@@ -23,12 +23,9 @@ import lumarca.program.WaveProgram2;
 import lumarca.program.hear.HearProgram;
 import lumarca.program.show.ShowProgram;
 import lumarca.util.ProcessingObject;
-
 import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
 import processing.video.Capture;
-
-
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 

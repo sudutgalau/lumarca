@@ -12,8 +12,6 @@ import lumarca.obj.TrianglePlane;
 import lumarca.util.Coord;
 import lumarca.util.ProcessingObject;
 import lumarca.util.Util;
-
-
 import processing.core.PApplet;
 
 public class LineMap extends ProcessingObject{

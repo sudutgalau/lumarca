@@ -5,21 +5,9 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import objloader.OBJModel;
-
 import lumarca.Lumarca;
-import lumarca.obj.Diamond;
-import lumarca.obj.Shape;
-import lumarca.program.CalabProgram;
 import lumarca.program.LineProgram;
-import lumarca.program.WaveProgram;
-import lumarca.program.WaveProgram2;
-import lumarca.program.hear.Boat;
 import lumarca.timer.ProgramTimer;
-import lumarca.timer.Timer;
-import lumarca.util.Coord;
-
-import processing.core.PApplet;
 
 
 public class StoryProgram extends LineProgram {

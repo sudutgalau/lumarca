@@ -9,8 +9,6 @@ import lumarca.util.Coord;
 import lumarca.util.ProcessingObject;
 import lumarca.util.Util;
 
-import processing.core.PApplet;
-
 
 public class TrianglePlane extends ProcessingObject {
 

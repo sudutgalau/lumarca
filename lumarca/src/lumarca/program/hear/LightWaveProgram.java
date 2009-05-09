@@ -3,11 +3,9 @@ package lumarca.program.hear;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
-import lumarca.program.LineProgram;
 import lumarca.program.story.StepLineProgram;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
 import processing.core.PApplet;
 
 

@@ -5,7 +5,6 @@ import javax.media.opengl.GL;
 import lumarca.Lumarca;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
 import processing.core.PApplet;
 
 

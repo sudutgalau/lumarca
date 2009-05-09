@@ -3,7 +3,6 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
-import lumarca.obj.Shape;
 
 
 public class CalabProgram extends LineProgram {

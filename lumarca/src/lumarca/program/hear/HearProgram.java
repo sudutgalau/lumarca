@@ -7,11 +7,9 @@ import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
 import lumarca.obj.Shape;
-import lumarca.program.CalabProgram;
 import lumarca.program.story.StoryProgram;
 import lumarca.timer.ProgramTimer;
 import lumarca.util.Coord;
-
 import processing.core.PApplet;
 
 

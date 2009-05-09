@@ -5,14 +5,10 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import com.sun.org.apache.bcel.internal.generic.LMUL;
-
 import lumarca.Lumarca;
 import lumarca.obj.Diamond;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
-
-import processing.core.PApplet;
 
 
 public class GameProgram extends LineProgram {

@@ -7,7 +7,6 @@ import lumarca.obj.Diamond;
 import lumarca.obj.ObjFile;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
-
 import processing.core.PApplet;
 
 

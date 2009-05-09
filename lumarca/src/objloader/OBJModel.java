@@ -9,7 +9,6 @@
 
 package objloader;
 
-import processing.core.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -20,6 +19,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import lumarca.util.Coord;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 
 /**

@@ -7,12 +7,9 @@ import lumarca.program.OtherSnakeProgram;
 import lumarca.program.WaterProgram;
 import lumarca.program.WaveProgram;
 import lumarca.program.WaveProgram2;
-import lumarca.program.hear.DarkWaveProgram;
 import lumarca.program.hear.HearProgram;
-import lumarca.program.hear.LightWaveProgram;
 import lumarca.program.story.StoryProgram;
 import lumarca.timer.ProgramTimer;
-import processing.core.PApplet;
 
 
 public class ShowProgram extends StoryProgram{

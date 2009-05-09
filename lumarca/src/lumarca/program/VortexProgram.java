@@ -3,13 +3,8 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
-import lumarca.obj.Diamond;
-import lumarca.obj.Pyramid;
-import lumarca.obj.Rectangle;
 import lumarca.util.Coord;
 import lumarca.util.Util;
-
-import processing.core.PApplet;
 
 public class VortexProgram extends LineProgram {
 
