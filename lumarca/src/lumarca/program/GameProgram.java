@@ -6,6 +6,7 @@ import java.util.List;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
+import lumarca.lineMap.LineMap;
 import lumarca.obj.Diamond;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
@@ -21,11 +22,16 @@ public class GameProgram extends LineProgram {
 		reset();
 	}
 	
+	public void start(){
+		reset();
+		System.out.println("RESET!");
+	}
+	
 	public void reset(){
 		balls = new ArrayList<Ball>();
 
 		for(int i = 0; i < 4; i++){
-			balls.add(new Ball(i, new Diamond(null, 200), new Coord(0, -0.98f,0), 
+			balls.add(new Ball(i, new Diamond(null, 200), new Coord(0, 0.98f,0), 
 					new Coord(lumarca.random(-10f,10f), 1, lumarca.random(-10f,10f))));
 //					new Coord(lumarca.random(-50,50),1,1)));
 //					lumarca.random(-50,50))));
@@ -81,7 +87,7 @@ public class GameProgram extends LineProgram {
 
 //			vec.normalize();
 			
-			shape.center = new Coord(lumarca.random(200, Lumarca.WIN_WIDTH -200), 400 + y * 0, lumarca.random(100f, 300f));
+			shape.center = new Coord(lumarca.random(200, Lumarca.WIN_WIDTH -200), 0, lumarca.random(100f, 300f));
 		}
 		
 		public void update(){
@@ -97,7 +103,7 @@ public class GameProgram extends LineProgram {
 				vec.x *= -1;
 			}
 			
-			if(shape.center.y < 100 && speed.y < 0){
+			if(shape.center.y > lumarca.lineMap.minPosition.y && speed.y > 0){
 //				System.out.println();
 				speed.y *= -1;
 			}

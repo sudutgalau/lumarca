@@ -132,6 +132,37 @@ public class Boat extends Shape {
 		}
 
 	}
+	
+	@Override
+	public List<Line> getIntersect(Coord color, Line line) {
+		List<Coord> coords = new ArrayList<Coord>();
+		List<Line> lines = new ArrayList<Line>();
+		
+		for (SimpleShape shape : parts) {
+			for (TrianglePlane tri : shape.getTris()) {
+				Coord inter = Util.checkIntersectTri(tri, line.bottom,
+						new Coord(0, -1, 0));
+				if (inter != null) {
+					coords.add(inter);
+				}
+			}
+		}
+
+		if (coords.size() > 1) {
+			Coord pt1 = coords.get(0);
+			Coord pt2 = coords.get(1);
+
+			if (pt2 == null) {
+				pt2 = line.bottom;
+			} else if (pt2.y < line.top.y) {
+				pt2 = line.top;
+			}
+			
+			lines.add(new Line(pt1, pt2, color));
+		}
+		
+		return null;
+	}
 
 	@Override
 	public void drawShape(GL gl) {

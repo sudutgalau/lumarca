@@ -3,6 +3,8 @@ package lumarca.program;
 import javax.media.opengl.GL;
 
 import lumarca.Lumarca;
+import lumarca.lineMap.Line;
+import lumarca.util.Coord;
 
 
 public class IndividualLineProgram extends LineProgram {
@@ -21,7 +23,9 @@ public class IndividualLineProgram extends LineProgram {
 	
 	@Override
 	public void display(GL gl) {
-			
+
+//		lumarca.lineMap.drawFloorBox(gl);
+		
 			lumarca.lineMap.draw3dPointOnZ(gl, lineNum);
 
 			lumarca.lineMap.draw3dPointOnY(gl, lineNum);
@@ -47,6 +51,13 @@ public class IndividualLineProgram extends LineProgram {
 			lineNum = 0;
 		else if(lineNum < 0)
 			lineNum = lumarca.LINE - 1;
+
+		if(lumarca.key == 'a'){
+			lumarca.lineMap.lines[lineNum] = lumarca.lineMap.makeNewLine(lineNum, +10);
+		}
+		if(lumarca.key == 'z'){
+			lumarca.lineMap.lines[lineNum] = lumarca.lineMap.makeNewLine(lineNum, -10);
+		}
 		
 
 		System.out.println(lineNum);

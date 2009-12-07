@@ -33,8 +33,10 @@ public class StoryProgram extends LineProgram {
 				timer.update(gl);
 				if((!timer.active) && (timers.size() - 1 != i)){
 					timers.get(i + 1).trigger();
+					timers.get(i + 1).program.start();
 				} else if(!timer.active){
 					timers.get(0).trigger();
+					timers.get(0).program.start();
 				}
 			} else {
 				timer.program.exit();

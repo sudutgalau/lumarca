@@ -22,13 +22,13 @@ public class ShowProgram extends StoryProgram{
 //		timers.add(new ProgramTimer(10, 5000, new WaterProgram(lumarca, 1.011f, 400)));
 		
 
+		timers.add(new ProgramTimer(10, 10000, new OtherSnakeProgram(lumarca)));
 		timers.add(new ProgramTimer(10, 10000, new WaterProgram(lumarca, 0.98f, 200)));
 		timers.add(new ProgramTimer(10, 10000, new WaveProgram(lumarca)));
 		timers.add(new ProgramTimer(10, 10000, new GameProgram(lumarca)));
 		timers.add(new ProgramTimer(10, 10000, new HearProgram(lumarca)));
 		timers.add(new ProgramTimer(10, 10000, new WaveProgram2(lumarca)));
-		timers.add(new ProgramTimer(10, 10000, new ObjProgram(lumarca)));
-		timers.add(new ProgramTimer(10, 10000, new OtherSnakeProgram(lumarca)));
+		timers.add(new ProgramTimer(10, 5000, new ObjProgram(lumarca)));
 	
 		
 		timers.get(0).trigger();

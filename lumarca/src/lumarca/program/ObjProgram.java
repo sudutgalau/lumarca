@@ -19,7 +19,7 @@ public class ObjProgram extends LineProgram {
 
 		shape = new ObjFile(lumarca, lumarca.lineMap.midPosition, new Coord(1f,1f,0f), "obj/Smile.obj", 0.125f);
 
-		shape.rotateOnX(PApplet.PI/2);
+		shape.rotateOnX(PApplet.PI + PApplet.PI/2);
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class ObjProgram extends LineProgram {
 			shape = new ObjFile(lumarca, lumarca.lineMap.midPosition, new Coord(0,0,1), "obj/HiveB.obj", 90.125f);
 		} else if(lumarca.key == 'S'){
 			shape = new ObjFile(lumarca, lumarca.lineMap.midPosition, new Coord(1f,1f,0f), "obj/Smile.obj", 0.125f);
-			
-			shape.rotateOnX(PApplet.PI/2);
+
+			shape.rotateOnX(PApplet.PI + PApplet.PI/2);
 		} else if(lumarca.key == ','){
 			shape = new Diamond(lumarca.lineMap.midPosition, 300f);
 			shape.setColor(new Coord(1,0,0));
@@ -59,7 +59,7 @@ public class ObjProgram extends LineProgram {
 			shape = new ObjFile(lumarca, lumarca.lineMap.midPosition, new Coord(1,1,1),
 					"obj/" + letter.toUpperCase() + ".obj", 500);
 
-			shape.rotateOnX(PApplet.PI + PApplet.PI/2);
+			shape.rotateOnX(PApplet.PI/2);
 		}
 	}
 
