@@ -11,6 +11,8 @@ import lumarca.lineMap.LineMap;
 import lumarca.program.BounceProgram;
 import lumarca.program.CalabProgram;
 import lumarca.program.CamProgram;
+import lumarca.program.ColorBounceProgram;
+import lumarca.program.ColorVortexProgram;
 import lumarca.program.GameProgram;
 import lumarca.program.IndividualLineProgram;
 import lumarca.program.LineProgram;
@@ -20,7 +22,11 @@ import lumarca.program.SnakeProgram;
 import lumarca.program.VortexProgram;
 import lumarca.program.WaveProgram;
 import lumarca.program.WaveProgram2;
+import lumarca.program.addons.FFTVis;
+import lumarca.program.addons.MudTub;
+import lumarca.program.addons.PerlinCloudProgram;
 import lumarca.program.hear.HearProgram;
+import lumarca.program.show.Gizmodo;
 import lumarca.program.show.ShowProgram;
 import lumarca.util.ProcessingObject;
 import processing.core.PApplet;
@@ -55,7 +61,7 @@ public class Lumarca extends PApplet {
 	AudioPlayer player;
 	public static Minim minim;
 	
-	public boolean useCamera = true;
+	public boolean useCamera = false;
 	public static Capture camera;
 	private final static int captureWidth = 320;
 	private final static int captureHeight = 240;
@@ -66,7 +72,7 @@ public class Lumarca extends PApplet {
 	
 	private enum PROGRAM {
 		CALAB, WAVE, WAVE2, SHOW, GAME, ONE_WIRE, 
-		OBJ_PROGRAM, TIMER, BOUNCE, CAM, SNAKE, VORTEX;
+		OBJ_PROGRAM, TIMER, BOUNCE, CAM, MUDTUB, VORTEX, SOUND;
 		LineProgram eval(Lumarca lumarca) {
 			switch (this) {
 			case CALAB:
@@ -89,10 +95,12 @@ public class Lumarca extends PApplet {
 				return new BounceProgram(lumarca, camera);
 			case CAM:
 				return new CamProgram(lumarca, camera);
-			case SNAKE:
-				return new OtherSnakeProgram(lumarca);
+			case MUDTUB:
+				return new MudTub(lumarca);
 			case VORTEX:
-				return new VortexProgram(lumarca);
+				return new ColorVortexProgram(lumarca);
+			case SOUND:
+				return new FFTVis(lumarca);
 			default:
 				return new CalabProgram(lumarca);
 			}
@@ -111,16 +119,6 @@ public class Lumarca extends PApplet {
 	}
 	
 	public void init() {
-//		// / to make a frame not displayable, you can
-//		// use frame.removeNotify()
-//		frame.removeNotify();
-//
-//		frame.setUndecorated(true);
-//
-//		// addNotify, here i am not sure if you have
-//		// to add notify again.
-//		frame.addNotify();
-		
 		
 		frame.dispose(); 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
@@ -128,12 +126,12 @@ public class Lumarca extends PApplet {
         frame.setUndecorated(true); 
         displayDevice.setFullScreenWindow(frame); 
         Dimension fullscreen = frame.getSize(); 
-//        this.setBounds((fullscreen.width - this.width) / 2, (fullscreen.height - this.height) / 2, this.width, this.height); 
 		
 		super.init();
 	}
 	
 	public void setup() {
+		
 		Capture.list();
 		
 		iwp = new IndividualLineProgram(this);
@@ -163,8 +161,7 @@ public class Lumarca extends PApplet {
 		currentProgram = new WaveProgram(this);
 		currentProgram = new CalabProgram(this);
 		
-
-	    glu.gluPerspective( 5.0, (float)width / (float)height, 1.0, 1000.0 );
+		currentProgram = new Gizmodo(this);
 	}
 
 
@@ -206,10 +203,15 @@ public class Lumarca extends PApplet {
 					0, 
 					0, 1, 0);
 		}
+		
+
+	    glu.gluPerspective( 5.0, (float)width / (float)height, 1.0, 1000.0 );
 	}
 
 	public void draw() {
 		background(0);
+		
+		noCursor();
 		
 		PGraphicsOpenGL pgl = (PGraphicsOpenGL) g;
 
@@ -271,10 +273,13 @@ public class Lumarca extends PApplet {
 			currentProgram = PROGRAM.CAM.eval(this);
 			break;
 		case '-':
-			currentProgram = PROGRAM.SNAKE.eval(this);
+			currentProgram = PROGRAM.MUDTUB.eval(this);
 			break;
 		case '=':
 			currentProgram = PROGRAM.VORTEX.eval(this);
+			break;
+		case '`':
+			currentProgram = PROGRAM.SOUND.eval(this);
 			break;
 		default:
 			break;
