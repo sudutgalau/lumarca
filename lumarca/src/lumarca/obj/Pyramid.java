@@ -12,7 +12,6 @@ import lumarca.util.Coord;
 public class Pyramid extends Shape {
 
 	private List<SimpleShape> parts = new ArrayList<SimpleShape>();
-	private Coord center;
 	
 	public Pyramid(Coord center, float size) {
 
@@ -57,6 +56,8 @@ public class Pyramid extends Shape {
 		parts.add(new SimpleShape(center, coords2));
 		parts.add(new SimpleShape(center, coords3));
 		parts.add(new SimpleShape(center, coords4));
+		
+		this.center = center.clone();
 	}
 
 	@Override
@@ -64,6 +65,21 @@ public class Pyramid extends Shape {
 		for(Shape shape: parts){
 			shape.drawIntersect(gl, color, line);
 		}
+	}
+
+	@Override
+	public List<Line> getIntersect(Coord color, Line line) {
+		List<Line> interLines = new ArrayList<Line>();
+		
+		for(Shape shape: parts){
+			List<Line> lines = shape.getIntersect(color, line);
+			
+			if(lines.size() > 0){
+				interLines.addAll(lines);
+			}
+		}
+		
+		return interLines;
 	}
 
 	@Override
@@ -98,6 +114,13 @@ public class Pyramid extends Shape {
 	public void rotateOnZ(float f) {
 		for(Shape shape: parts){
 			shape.rotateOnZ(f);
+		}
+	}
+
+	public void setCenter(Coord center) {
+		this.center = center.clone();
+		for(Shape shape: parts){
+			shape.setCenter(center.clone());
 		}
 	}
 

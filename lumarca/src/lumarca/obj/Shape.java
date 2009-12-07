@@ -1,5 +1,7 @@
 package lumarca.obj;
 
+import java.util.List;
+
 import javax.media.opengl.GL;
 
 import lumarca.lineMap.Line;
@@ -11,8 +13,10 @@ public abstract class Shape extends ProcessingObject {
 
 	public Coord center;
 	public Coord color;
-	
+
 	public abstract void drawIntersect(GL gl, Coord color, Line line);
+	
+	public abstract List<Line> getIntersect(Coord color, Line line);
 
 	public abstract void drawWireFrame(GL gl);
 	
