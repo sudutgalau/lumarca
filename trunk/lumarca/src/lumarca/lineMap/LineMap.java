@@ -156,10 +156,28 @@ public class LineMap extends ProcessingObject{
 		}
 	}
 
+	public List<Line> getShape(Coord color, Shape shape){
+		List<Line> interLines = new ArrayList<Line>();
+		
+		for(Line line: lines){
+			interLines.addAll(shape.getIntersect(color, line));
+		}
+		
+		return interLines;
+	}
+
 	public void drawShapes(GL gl, Coord color, List<Shape> shapes){
 		for(Line line: lines){
 			for(Shape shape: shapes){
 				shape.drawIntersect(gl, color, line);
+			}
+		}
+	}
+
+	public void drawShapes(GL gl, List<Shape> shapes){
+		for(Line line: lines){
+			for(Shape shape: shapes){
+				shape.drawIntersect(gl, shape.color, line);
 			}
 		}
 	}
@@ -702,5 +720,58 @@ public class LineMap extends ProcessingObject{
 ////			println((((int)(coord.x))));
 ////			println(z);
 //		}
+	}
+	
+	public Line makeNewLine(int lineN, int yMod){
+		
+		Line oldLine = lines[lineN];
+		
+		map[lineN] += yMod;
+		
+		for (int lineCount = 0; lineCount < lineNum; lineCount++) {
+			
+			
+			float camDiff = PApplet.dist(
+					projectorX, 
+					projectorY,
+					projectorZ, 
+					lineCount * (Lumarca.WIN_WIDTH/lineNum), 
+					minY,
+					Lumarca.WIN_HEIGHT);
+
+//			System.out.println("camDiff: " + camDiff);
+			
+			float yIntersect = 
+				(projectorY - minY) / 
+				((projectorY - Lumarca.WIN_HEIGHT + map[lineCount]) / camDiff);
+			
+
+//			float yIntersect = PApplet.sqrt(
+//				PApplet.pow(projectorY - ((projectorY - Lumarca.WIN_HEIGHT + map[lineCount]) / camDiff), 2) +
+//				PApplet.pow(projectorY - ((projectorY - Lumarca.WIN_HEIGHT + map[lineCount]) / camDiff), 2));
+				
+			
+//			float f = (projectorX - (lineCount * (Lumarca.WIN_WIDTH/lineNum)) / camDiff) * yIntersect;
+			
+//			coords[lineNum] = new Coord(
+//					(projector_x - (lineNum * 4 + 0)) / camDiff,
+//					(projector_y - Lumarca.WIN_HEIGHT + map[lineNum]) / camDiff,
+//					(projector_z - 0f) / camDiff, yIntersect, camDiff);
+
+			
+			lines[lineCount] = new Line(
+					new Coord(
+							projectorX - ((projectorX - (lineCount * (Lumarca.WIN_WIDTH/lineNum))) / camDiff) * yIntersect,
+							minY,
+							projectorZ - (projectorZ / camDiff) * yIntersect, 
+							yIntersect, camDiff), 
+					new Coord(
+							projectorX - ((projectorX - (lineCount * (Lumarca.WIN_WIDTH/lineNum))) / camDiff) * yIntersect,
+							minY - Lumarca.WIN_HEIGHT/3,
+							projectorZ - (projectorZ / camDiff) * yIntersect));
+			
+		}
+		
+		return lines[lineN];
 	}
 }
