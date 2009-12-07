@@ -102,7 +102,7 @@ public class WaterProgram extends LineProgram {
 //			
 			Util.drawLineNoDots(gl, new Coord(0,0,1), bottom, top);
 
-			top.y = bottom.y - 2;
+			bottom.y = top.y - 2;
 			
 			Util.drawLineNoDots(gl, new Coord(0,1,1), bottom, top);
 //				ellipse(x * 2, y * 2, 20 - pt1[x + y * width] * 20, 20 - pt1[x + y * width] * 20);

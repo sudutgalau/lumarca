@@ -13,11 +13,11 @@ import lumarca.program.snake.Snake;
 public class OtherSnakeProgram extends LineProgram {
 
     Snake snake;
-    public static boolean drawMesh = true;
+    public static boolean drawMesh = false;
 	
 	public OtherSnakeProgram(Lumarca lumarca) {
 		super(lumarca);
-		lumarca.frameRate(5);
+//		lumarca.frameRate(5);
 		snake = new Snake();
 	}
 
@@ -28,6 +28,7 @@ public class OtherSnakeProgram extends LineProgram {
 
 	@Override
 	public void display(GL gl) {
+		System.out.println("OTHER");
 	    snake.draw(gl, lumarca.lineMap);
 	}
 
