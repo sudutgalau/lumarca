@@ -267,10 +267,12 @@ public class Lumarca extends PApplet {
 			currentProgram = PROGRAM.TIMER.eval(this);
 			break;
 		case '9':
-			currentProgram = PROGRAM.BOUNCE.eval(this);
+			if(camera != null)
+				currentProgram = PROGRAM.BOUNCE.eval(this);
 			break;
 		case '0':
-			currentProgram = PROGRAM.CAM.eval(this);
+			if(camera != null)
+				currentProgram = PROGRAM.CAM.eval(this);
 			break;
 		case '-':
 			currentProgram = PROGRAM.MUDTUB.eval(this);
