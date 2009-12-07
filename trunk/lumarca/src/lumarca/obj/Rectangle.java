@@ -56,6 +56,21 @@ public class Rectangle extends Shape {
 	}
 
 	@Override
+	public List<Line> getIntersect(Coord color, Line line) {
+		List<Line> lines = new ArrayList<Line>();
+		
+		for(Shape shape: parts){
+			List<Line> interLines = shape.getIntersect(color, line);
+			
+			if(interLines.size() > 0){
+				lines.addAll(interLines);
+			}
+		}
+		
+		return lines;
+	}
+
+	@Override
 	public void drawShape(GL gl) {
 		for(Shape shape: parts){
 			shape.drawShape(gl);

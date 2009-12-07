@@ -70,6 +70,21 @@ public class Diamond extends Shape {
 	}
 
 	@Override
+	public List<Line> getIntersect(Coord color, Line line) {
+		List<Line> interLines = new ArrayList<Line>();
+		
+		for(Shape shape: parts){
+			List<Line> lines = shape.getIntersect(color, line);
+
+			if(lines.size() > 0){
+				interLines.addAll(lines);
+			}
+		}
+		
+		return interLines;
+	}
+
+	@Override
 	public void drawShape(GL gl) {
 		for(Shape shape: parts){
 			shape.drawShape(gl);

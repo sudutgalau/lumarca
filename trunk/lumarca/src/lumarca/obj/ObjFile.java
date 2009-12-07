@@ -70,7 +70,7 @@ public class ObjFile extends Shape {
 		}
 	}
 	
-	public List<Coord> getIntersection(Line line, GL gl) {
+	public List<Coord> getIntersection(Line line) {
 
 		List<Coord> result = new ArrayList<Coord>();
 
@@ -124,7 +124,7 @@ public class ObjFile extends Shape {
 	}
 	
 	public void drawIntersect(GL gl, Coord color, Line line) {
-		List<Coord> result = getIntersection(line, gl);
+		List<Coord> result = getIntersection(line);
 		
 //		System.out.println("result: " + result.size());
 	
@@ -167,6 +167,47 @@ public class ObjFile extends Shape {
 				
 			}
 		}
+	}
+	
+	public List<Line> getIntersect(Coord color, Line line) {
+		List<Line> interLines = new ArrayList<Line>();
+		List<Coord> result = getIntersection(line);
+	
+		if(result.size() > 2){
+			SortedSet<Coord> set = new TreeSet<Coord>(new HeightCoordComparator());
+			set.addAll(result);
+			
+			result = new ArrayList<Coord>(set);
+		}
+		
+		if (result.size() == 2) {
+			Coord coord1 = result.get(0);
+			Coord coord2 = result.get(1);
+
+			if (coord1.y > line.bottom.y) {
+				coord1 = line.bottom;
+			}
+			if (coord2.y < line.bottom.y) {
+				interLines.add(new Line(coord1, coord2, color));
+			}
+		}
+
+		if (result.size() > 2) {
+			for(int i = 0; i < result.size() - 1; i+=2){
+				Coord coord1 = result.get(i);
+				Coord coord2 = result.get(i+1);
+				
+				if(coord2.y > line.bottom.y){
+					coord2 = line.bottom;
+				}
+				if(coord1.y < line.bottom.y){
+					interLines.add(new Line(coord1, coord2, color));
+				}
+				
+			}
+		}
+		
+		return interLines;
 	}
 
 	@Override
