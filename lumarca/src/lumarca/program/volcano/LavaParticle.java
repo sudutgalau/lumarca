@@ -21,11 +21,11 @@ public class LavaParticle extends ProcessingObject {
 		this.lumarca = lumarca;
 		
 		Coord center = lumarca.lineMap.midPosition.clone();
-		center.y += 100f;
+		center.y -= 100f;
 		
 		lava = new Diamond(center, 150f);
 		
-		acel = new Coord(pApplet.random(-5, 5),pApplet.random(-25, -35), pApplet.random(-5, 5));
+		acel = new Coord(pApplet.random(-5, 5),pApplet.random(15, 25), pApplet.random(-5, 5));
 		
 		lava.color = new Coord(1, 0, 0);
 	}
@@ -33,10 +33,10 @@ public class LavaParticle extends ProcessingObject {
 	
 	public void update(){
 	
-		if(lava.getCenter().y > lumarca.lineMap.minPosition.y){
+		if(lava.getCenter().y < lumarca.lineMap.maxPosition.y){
 			timer++;
 		} else {
-			acel.y++;
+			acel.y--;
 			
 			Coord newCenter = Coord.add(lava.getCenter(), acel);
 			

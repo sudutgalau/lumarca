@@ -31,7 +31,7 @@ public class GameProgram extends LineProgram {
 		balls = new ArrayList<Ball>();
 
 		for(int i = 0; i < 4; i++){
-			balls.add(new Ball(i, new Diamond(null, 200), new Coord(0, 0.98f,0), 
+			balls.add(new Ball(i, new Diamond(null, 200), new Coord(0, -0.98f,0), 
 					new Coord(lumarca.random(-10f,10f), 1, lumarca.random(-10f,10f))));
 //					new Coord(lumarca.random(-50,50),1,1)));
 //					lumarca.random(-50,50))));
@@ -79,7 +79,7 @@ public class GameProgram extends LineProgram {
 		public Ball(float y, Shape shape, Coord accel, Coord vec) {
 			super();
 			this.shape = shape;
-			this.speed = new Coord(1,1,1);
+			this.speed = new Coord(1,-1,1);
 			this.accel = accel;
 			this.vec = vec;
 			
@@ -87,7 +87,7 @@ public class GameProgram extends LineProgram {
 
 //			vec.normalize();
 			
-			shape.center = new Coord(lumarca.random(200, Lumarca.WIN_WIDTH -200), 0, lumarca.random(100f, 300f));
+			shape.center = new Coord(lumarca.random(200, Lumarca.WIN_WIDTH -200), 400, lumarca.random(100f, 300f));
 		}
 		
 		public void update(){
@@ -103,7 +103,7 @@ public class GameProgram extends LineProgram {
 				vec.x *= -1;
 			}
 			
-			if(shape.center.y > lumarca.lineMap.minPosition.y && speed.y > 0){
+			if(shape.center.y < lumarca.lineMap.maxPosition.y && speed.y < 0){
 //				System.out.println();
 				speed.y *= -1;
 			}

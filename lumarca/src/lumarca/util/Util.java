@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
+import lumarca.Lumarca;
 import lumarca.lineMap.LineMap;
 import lumarca.obj.TrianglePlane;
 import processing.core.PApplet;
@@ -317,5 +318,11 @@ public class Util extends ProcessingObject {
 		
 		return dir;
 	} 
+	
+	public static void log(String str){
+		if(Lumarca.LOGGING){
+			System.out.println(str);
+		}
+	}
 
 }

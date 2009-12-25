@@ -47,7 +47,7 @@ public class WaterProgram extends LineProgram {
 	
 	public void update() {
 		
-		System.out.println("SIZE:" + 443*lumarca.width);
+//		System.out.println("SIZE:" + 443*lumarca.width);
 		
 //		splash(lumarca.mouseX, lumarca.mouseY, 0.5F, 5);
 		if(lumarca.frameCount%3 == 0)
@@ -93,9 +93,9 @@ public class WaterProgram extends LineProgram {
 			bottom.y = waterHeight;
 			Coord top = bottom.clone();
 			
-			if(z > 440){
-				System.out.println("x: " + x + " z: " + z + " = " + getIndex(x, z, lumarca.width) + " " + pt1.length);
-			}
+//			if(z > 440){
+//				System.out.println("x: " + x + " z: " + z + " = " + getIndex(x, z, lumarca.width) + " " + pt1.length);
+//			}
 			
 			top.y -= pt1[getIndex(x, z, lumarca.width)] * 1000;
 			bottom.y = top.y + 20;//pt1[getIndex(x, z, lumarca.width)] * 1000;
@@ -114,7 +114,7 @@ public class WaterProgram extends LineProgram {
 				maxX = z;
 			}
 
-		System.out.println(minX + "-----------------" + maxX);
+//		System.out.println(minX + "-----------------" + maxX);
 	}
 
 	@Override
