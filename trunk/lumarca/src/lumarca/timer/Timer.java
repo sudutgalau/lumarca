@@ -22,12 +22,13 @@ public class Timer extends ProcessingObject{
 		
 	public void trigger() {
 		active = true;
-		begin = pApplet.millis();
+		begin = pApplet.frameCount;
 		end = baseEnd + begin;
 	}
 	
 	public void update() {
-		long currentTime = pApplet.millis();
+//		long currentTime = pApplet.millis();
+		long currentTime = pApplet.frameCount;
 		
 
 //		System.out.println("currentTime: " + currentTime + " end: " + end);
