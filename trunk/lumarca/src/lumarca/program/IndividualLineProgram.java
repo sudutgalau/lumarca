@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 
@@ -13,7 +13,7 @@ public class IndividualLineProgram extends LineProgram {
 
 	private int lineNum2 = lumarca.LINE - 1;
 	
-	public IndividualLineProgram(Lumarca lumarca) {
+	public IndividualLineProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 	}
 

@@ -2,7 +2,7 @@ package lumarca.program.volcano;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.obj.Diamond;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
@@ -10,13 +10,13 @@ import lumarca.util.ProcessingObject;
 
 public class LavaParticle extends ProcessingObject {
 
-	private Lumarca lumarca;
+	private LumarcaPRO lumarca;
 	private Shape lava;
 	private Coord acel;
 	public boolean active = true;
 	public int timer = 0;
 	
-	public LavaParticle(Lumarca lumarca) {
+	public LavaParticle(LumarcaPRO lumarca) {
 		super();
 		this.lumarca = lumarca;
 		

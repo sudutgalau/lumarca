@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.obj.Diamond;
 import lumarca.obj.Rectangle;
 import lumarca.obj.Shape;
@@ -21,7 +21,7 @@ public class BounceProgram extends LineProgram {
 
 	float speed = 20f;
 
-	Coord center = new Coord(Lumarca.WIN_WIDTH/2, 200f, 410);//snakeSize * 5);
+	Coord center = new Coord(LumarcaPRO.WIN_WIDTH/2, 200f, 410);//snakeSize * 5);
 	
 	public List<Shape> parts;
 	Diamond diamond;
@@ -48,7 +48,7 @@ public class BounceProgram extends LineProgram {
 	private PImage pimg;
 	private PImage pimg2;
 
-	public BounceProgram(Lumarca lumarca, Capture cam) {
+	public BounceProgram(LumarcaPRO lumarca, Capture cam) {
 		super(lumarca);
 
 		init();
@@ -67,20 +67,20 @@ public class BounceProgram extends LineProgram {
 		snakeSize = 30f;
 		
 		mode = PLAY;
-		paddleSound = Lumarca.minim.loadSnippet("aqua.mp3");
-		bounceSound1 = Lumarca.minim.loadSnippet("BD.mp3");
-//		bounceSound1 = Lumarca.minim.loadSnippet("BD.mp3");
-		endSound = Lumarca.minim.loadSnippet("aaah.mp3");
+		paddleSound = LumarcaPRO.minim.loadSnippet("aqua.mp3");
+		bounceSound1 = LumarcaPRO.minim.loadSnippet("BD.mp3");
+//		bounceSound1 = LumarcaPRO.minim.loadSnippet("BD.mp3");
+		endSound = LumarcaPRO.minim.loadSnippet("aaah.mp3");
 		
 //		paddleSound.play();
 		 
-		center = new Coord(Lumarca.WIN_WIDTH/2, 400f, 200);//snakeSize * 5);
+		center = new Coord(LumarcaPRO.WIN_WIDTH/2, 400f, 200);//snakeSize * 5);
 		
 		dir = new Coord(2.5f,2.5f,2.5f);
 		
 		parts = new ArrayList<Shape>();
 		diamond = new Diamond(center, snakeSize * 5f);
-		rectangle = new Rectangle(new Coord(Lumarca.WIN_WIDTH/2, 90f, 200), snakeSize * 100, 35, snakeSize * 100);
+		rectangle = new Rectangle(new Coord(LumarcaPRO.WIN_WIDTH/2, 90f, 200), snakeSize * 100, 35, snakeSize * 100);
 
 		parts.add(diamond);
 		parts.add(rectangle);

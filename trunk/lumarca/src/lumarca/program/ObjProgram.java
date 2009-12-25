@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.lineMap.Line;
 import lumarca.obj.Diamond;
 import lumarca.obj.ObjFile;
@@ -21,7 +21,7 @@ public class ObjProgram extends LineProgram {
 	
 	private float size = 5f;
 	
-	public ObjProgram(Lumarca lumarca) {
+	public ObjProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		
 		shape =  new Sphere(lumarca, lumarca.lineMap.midPosition, new Coord(0f,1f,0f), size);

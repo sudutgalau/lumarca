@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.obj.Rectangle;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
@@ -19,7 +19,7 @@ public class ArtProgram extends LineProgram{
 	
 	private int dir = 1;
 	
-	public ArtProgram(Lumarca lumarca) {
+	public ArtProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		
 		box = new Rectangle(lumarca.lineMap.maxPosition.clone(), 400, 400, 400);

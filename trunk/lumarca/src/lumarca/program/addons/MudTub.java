@@ -8,7 +8,7 @@ import java.net.SocketException;
 import javax.media.opengl.GL;
 
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 
 import lumarca.lineMap.Line;
 
@@ -38,7 +38,7 @@ public float[] tubData = new float[192];
 
     public Thread thread;
 
-    public MudTub(Lumarca lumarca) {
+    public MudTub(LumarcaPRO lumarca) {
 
     super(lumarca);
 

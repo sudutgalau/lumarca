@@ -1,6 +1,6 @@
 package lumarca.util;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 
 
 
@@ -41,9 +41,9 @@ public class Coord {
 	}
 	
 	public Coord getYIntersect(){
-		return new Coord(Lumarca.DEFAULT_CAMERA_X - x * yIntersect, 
-				Lumarca.DEFAULT_CAMERA_Y - y * yIntersect, 
-				Lumarca.DEFAULT_CAMERA_Z - z * yIntersect);
+		return new Coord(LumarcaPRO.DEFAULT_CAMERA_X - x * yIntersect, 
+				LumarcaPRO.DEFAULT_CAMERA_Y - y * yIntersect, 
+				LumarcaPRO.DEFAULT_CAMERA_Z - z * yIntersect);
 	}
 	
 	public void normalize(){

@@ -1,7 +1,7 @@
 package lumarca.program.snake;
 
 /**
- * This file is part of the Snake program for the Lumarca project.
+ * This file is part of the Snake program for the LumarcaPRO project.
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 

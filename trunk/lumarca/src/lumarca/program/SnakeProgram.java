@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.obj.Diamond;
 import lumarca.obj.Shape;
 import lumarca.util.Coord;
@@ -25,13 +25,13 @@ public class SnakeProgram extends LineProgram {
 	
 	public List<Shape> parts = new ArrayList<Shape>();
 	
-	public SnakeProgram(Lumarca lumarca) {
+	public SnakeProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 
-		center  = new Coord(Lumarca.WIN_WIDTH/2, 400f, snakeSize * 5);
-		center1 = new Coord(Lumarca.WIN_WIDTH/2, 400f, snakeSize * 4);
-		center2 = new Coord(Lumarca.WIN_WIDTH/2, 400f, snakeSize * 3);
-		center3 = new Coord(Lumarca.WIN_WIDTH/2, 400f, snakeSize * 2);
+		center  = new Coord(LumarcaPRO.WIN_WIDTH/2, 400f, snakeSize * 5);
+		center1 = new Coord(LumarcaPRO.WIN_WIDTH/2, 400f, snakeSize * 4);
+		center2 = new Coord(LumarcaPRO.WIN_WIDTH/2, 400f, snakeSize * 3);
+		center3 = new Coord(LumarcaPRO.WIN_WIDTH/2, 400f, snakeSize * 2);
 		
 		Diamond diamond1 = new Diamond(center, 	snakeSize * 5);
 		Diamond diamond2 = new Diamond(center1, snakeSize);

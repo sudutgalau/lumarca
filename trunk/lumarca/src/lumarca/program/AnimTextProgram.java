@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.lineMap.Line;
 import lumarca.obj.Diamond;
 import lumarca.obj.ObjFile;
@@ -23,7 +23,7 @@ public class AnimTextProgram extends LineProgram {
 	private int index = 0;
 	private List<List<Line>> frames = new ArrayList<List<Line>>();
 
-	public AnimTextProgram(Lumarca lumarca) {
+	public AnimTextProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 
 		smile = new ObjFile(lumarca, lumarca.lineMap.midPosition, new Coord(1f,

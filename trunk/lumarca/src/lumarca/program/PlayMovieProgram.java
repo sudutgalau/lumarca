@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 
 import processing.video.Movie;
 import processing.video.MovieMaker;
@@ -34,7 +34,7 @@ public class PlayMovieProgram extends LineProgram {
 	
 	private Movie mov;
 
-	public PlayMovieProgram(Lumarca lumarca) {
+	public PlayMovieProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		
 		System.out.println("HUH?");
@@ -50,7 +50,7 @@ public class PlayMovieProgram extends LineProgram {
 
 			System.out.println("HUH?");
 
-		  mm = new MovieMaker(lumarca, ((int)Lumarca.WIN_WIDTH), ((int)Lumarca.WIN_HEIGHT)/2, "drawing.mov",
+		  mm = new MovieMaker(lumarca, ((int)LumarcaPRO.WIN_WIDTH), ((int)LumarcaPRO.WIN_HEIGHT)/2, "drawing.mov",
 		                       30);
 			System.out.println("HUH?");
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.lineMap.LineMap;
 import lumarca.obj.Diamond;
 import lumarca.obj.Shape;
@@ -16,7 +16,7 @@ public class GameProgram extends LineProgram {
 
 	private List<Ball> balls = new ArrayList<Ball>();
 	
-	public GameProgram(Lumarca lumarca) {
+	public GameProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		
 		reset();
@@ -87,7 +87,7 @@ public class GameProgram extends LineProgram {
 
 //			vec.normalize();
 			
-			shape.center = new Coord(lumarca.random(200, Lumarca.WIN_WIDTH -200), 400, lumarca.random(100f, 300f));
+			shape.center = new Coord(lumarca.random(200, LumarcaPRO.WIN_WIDTH -200), 400, lumarca.random(100f, 300f));
 		}
 		
 		public void update(){
