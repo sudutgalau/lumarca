@@ -158,6 +158,9 @@ public class Util extends ProcessingObject {
 	
 	public static void drawLine(GL gl, Coord color, Coord top, Coord bottom){
 
+
+		gl.glLineWidth(2f);
+		
 		//Line
 		gl.glColor3f(color.x, color.y, color.z);
 		gl.glBegin(GL.GL_LINE_STRIP);
