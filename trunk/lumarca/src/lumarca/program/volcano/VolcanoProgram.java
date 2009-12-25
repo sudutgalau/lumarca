@@ -27,6 +27,9 @@ public class VolcanoProgram extends LineProgram {
 		base = new Pyramid(basePos, 300f);
 		base2 = new Pyramid(basePos, 300f);
 		base2.rotateOnY(Lumarca.PI/4);
+
+		base.rotateOnX(Lumarca.PI);
+		base2.rotateOnX(Lumarca.PI);
 	}
 
 
@@ -60,7 +63,7 @@ public class VolcanoProgram extends LineProgram {
 		lumarca.lineMap.drawShape(gl, new Coord(1f, .5f, 0), base);
 		
 //		base.drawWireFrame(gl);
-//		lumarca.lineMap.drawShape(gl, new Coord(1f, .5f, 0), base2);
+		lumarca.lineMap.drawShape(gl, new Coord(1f, .5f, 0), base2);
 		
 	}
 

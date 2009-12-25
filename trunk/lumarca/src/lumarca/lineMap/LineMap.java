@@ -44,6 +44,11 @@ public class LineMap extends ProcessingObject{
 	public LineMap(int lineNum, float projectorX, float projectorY, float projectorZ, String fileName) {
 		super();
 		this.lineNum = lineNum;
+		
+		if(!Lumarca.DIY){
+			lineNum *= 3;
+		}
+		
 		this.lines = new Line[lineNum];
 		this.map  = new float[lineNum];
 
@@ -125,6 +130,9 @@ public class LineMap extends ProcessingObject{
 		
 		
 		for(Line line: lines){
+			
+			pApplet.println(line.bottom.x + "," + line.bottom.z);
+			
 			if(line.bottom.x > maxPosition.x){
 				maxPosition.x = line.bottom.x;
 			}
@@ -148,6 +156,10 @@ public class LineMap extends ProcessingObject{
 		midPosition = new Coord((maxPosition.x + minPosition.x)/2,
 				(maxPosition.y + minPosition.y)/2,
 				(maxPosition.z + minPosition.z)/2);
+
+		pApplet.println("PRO" + projectorX + "x" + projectorY + "x" + projectorZ);
+		pApplet.println("MAX" + maxPosition.x + "x" + maxPosition.y + "x" + maxPosition.z);
+		pApplet.println("MIN" + minPosition.x + "x" + minPosition.y + "x" + minPosition.z);
 	}
 
 	public void drawShape(GL gl, Coord color, Shape shape){
@@ -189,9 +201,11 @@ public class LineMap extends ProcessingObject{
 		if(lines == null)
 			return false;
 		
-		pApplet.println("there are " + lines.length + " lines");
-		for (int i=0; i < lines.length; i++) {
-			pApplet.println(lines[i]);
+		if (Lumarca.LOGGING) {
+			pApplet.println("there are " + lines.length + " lines");
+			for (int i = 0; i < lines.length; i++) {
+				pApplet.println(lines[i]);
+			}
 		}
 
 		int i = 0;
@@ -241,7 +255,7 @@ public class LineMap extends ProcessingObject{
 		}
 	}
 	
-	private final static float tolerance = 40f;
+	private final static float tolerance = 68f;
 	
 	private boolean tooClose(int line1, int line2){
 		Coord coord1 = lines[line1].bottom;
@@ -249,6 +263,7 @@ public class LineMap extends ProcessingObject{
 		
 		if(PApplet.dist(coord1.x, coord1.y, coord1.z, coord2.x, coord2.y, coord2.z) < tolerance){
 			System.out.println(PApplet.dist(coord1.x, coord1.y, coord1.z, coord2.x, coord2.y, coord2.z) + " : " + line2);
+
 			return true;
 		}
 		
@@ -271,7 +286,8 @@ public class LineMap extends ProcessingObject{
 	}
 	
 	private void makeMap(String fileName) {
-
+		
+		Util.log("NEW FILE!");
 		
 		for (int i = 0; i < map.length; i++) {
 			map[i] = Lumarca.WIN_HEIGHT - pApplet.random((Lumarca.WIN_HEIGHT/2) * 2/3, 
@@ -281,6 +297,7 @@ public class LineMap extends ProcessingObject{
 			System.out.println("map[i]: " + map[i]);
 			
 			while(!validline(i)){
+				
 				map[i] = Lumarca.WIN_HEIGHT - pApplet.random((Lumarca.WIN_HEIGHT/2) * 2/3, 
 						Lumarca.WIN_HEIGHT/2);
 			}
@@ -474,28 +491,28 @@ public class LineMap extends ProcessingObject{
 		
 		gl.glLineWidth(1f);
 		
-		gl.glBegin(GL.GL_LINE_STRIP);
-		
-		gl.glVertex3f(10f, minY, 0f);
-		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
-				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
-		
-		gl.glVertex3f(10f, maxY, 0f);
-		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, maxY,  
-				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
-		gl.glVertex3f(10f, minY, 0f);
-		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
-				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
-
-		gl.glVertex3f(10f, minY, 0f);
-		gl.glVertex3f(10f, maxY, 0f);
-		
-		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
-				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
-		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, maxY,  
-				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
-		
-		gl.glEnd();
+//		gl.glBegin(GL.GL_LINE_STRIP);
+//		
+//		gl.glVertex3f(1000f, minY, 0f);
+//		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
+//				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
+//		
+//		gl.glVertex3f(10f, maxY, 0f);
+//		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, maxY,  
+//				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
+//		gl.glVertex3f(10f, minY, 0f);
+//		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
+//				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
+//
+//		gl.glVertex3f(10f, minY, 0f);
+//		gl.glVertex3f(10f, maxY, 0f);
+//		
+//		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, minY, 
+//				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
+//		gl.glVertex3f(Lumarca.WIN_WIDTH - 10f, maxY,  
+//				((coord.z - projectorZ)/coord.yIntersect) * coord.camDiff + projectorZ);
+//		
+//		gl.glEnd();
 		
 
 //		System.out.println("------------");

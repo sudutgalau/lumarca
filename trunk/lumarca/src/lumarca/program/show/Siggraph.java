@@ -15,17 +15,19 @@ import lumarca.program.story.StoryProgram;
 import lumarca.program.volcano.VolcanoProgram;
 import lumarca.timer.ProgramTimer;
 
-public class Gizmodo extends StoryProgram{
+public class Siggraph extends StoryProgram{
 
 	
-	public Gizmodo(Lumarca lumarca) {
+	public Siggraph(Lumarca lumarca) {
 		super(lumarca);
 
 //		timers.add(new ProgramTimer(10, 30000, new AnimTextProgram(lumarca)));
-		timers.add(new ProgramTimer(10, 30000, new VolcanoProgram(lumarca)));
-		timers.add(new ProgramTimer(10, 30000, new ColorBounceProgram(lumarca)));
-		timers.add(new ProgramTimer(10, 10000, new WaterProgram(lumarca, 0.98f, 200)));
-		timers.add(new ProgramTimer(10, 10000, new HearProgram(lumarca)));
+		timers.add(new ProgramTimer(1, 30 * 10, new VolcanoProgram(lumarca)));
+		timers.add(new ProgramTimer(1, 30 * 25, new ColorBounceProgram(lumarca)));
+		timers.add(new ProgramTimer(1, 30 * 5, new WaveProgram2(lumarca)));
+		timers.add(new ProgramTimer(1, 30 * 10, new WaterProgram(lumarca, 0.98f, 200)));
+		timers.add(new ProgramTimer(1, 30 * 5, new HearProgram(lumarca)));
+		timers.add(new ProgramTimer(1, 30 * 5, new WaveProgram(lumarca)));
 		
 		timers.get(0).trigger();
 	}

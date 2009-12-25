@@ -49,7 +49,7 @@ public class HearProgram extends StoryProgram {
 		super.display(gl);
 
 		rot += 0.01f * dir;
-		System.out.println("ROT: " + rot);
+//		System.out.println("ROT: " + rot);
 
 		if(PApplet.abs(rot) > end){
 			dir *= -1;

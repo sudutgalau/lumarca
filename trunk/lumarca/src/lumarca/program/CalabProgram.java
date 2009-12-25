@@ -21,7 +21,7 @@ public class CalabProgram extends LineProgram {
 	public void display(GL gl) {
 
 		
-		for (int lineNum = 0; lineNum < lumarca.LINE - 1; lineNum++) {
+		for (int lineNum = 0; lineNum < lumarca.lineMap.lines.length; lineNum++) {
 			
 			//line from Camera to Y points
 //			lumarca.lineMap.drawIntersectLine(gl, lineNum);
@@ -31,8 +31,8 @@ public class CalabProgram extends LineProgram {
 
 			//Y Points
 			lumarca.lineMap.draw3dPointOnY(gl, lineNum);
-			
-
+//			
+//
 			lumarca.lineMap.drawVertLines(gl, lineNum);
 		}
 

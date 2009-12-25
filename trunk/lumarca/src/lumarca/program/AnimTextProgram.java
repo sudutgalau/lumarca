@@ -18,7 +18,7 @@ public class AnimTextProgram extends LineProgram {
 
 	private Shape shape;
 	private Shape smile;
-	private String str = "GIZMODO";
+	private String str = "SIGGRAPHASIA";
 	private int frameNum = 0;
 	private int index = 0;
 	private List<List<Line>> frames = new ArrayList<List<Line>>();
@@ -61,7 +61,7 @@ public class AnimTextProgram extends LineProgram {
 		shape = new ObjFile(lumarca, lumarca.lineMap.midPosition,
 				new Coord(0.25f, 0.25f, 1), "obj/" + str.charAt(index) + ".obj",
 				500);
-		shape.rotateOnX(PApplet.PI / 2);
+		shape.rotateOnX(PApplet.PI * 2 * 3/4);
 	}
 	
 	List<Line> frame;

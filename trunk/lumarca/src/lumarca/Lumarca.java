@@ -8,6 +8,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
 import lumarca.lineMap.LineMap;
+import lumarca.program.ArtProgram;
 import lumarca.program.BounceProgram;
 import lumarca.program.CalabProgram;
 import lumarca.program.CamProgram;
@@ -18,6 +19,7 @@ import lumarca.program.IndividualLineProgram;
 import lumarca.program.LineProgram;
 import lumarca.program.ObjProgram;
 import lumarca.program.OtherSnakeProgram;
+import lumarca.program.PlayMovieProgram;
 import lumarca.program.SnakeProgram;
 import lumarca.program.VortexProgram;
 import lumarca.program.WaveProgram;
@@ -28,10 +30,13 @@ import lumarca.program.addons.PerlinCloudProgram;
 import lumarca.program.hear.HearProgram;
 import lumarca.program.show.Gizmodo;
 import lumarca.program.show.ShowProgram;
+import lumarca.program.show.Siggraph;
+import lumarca.program.volcano.VolcanoProgram;
 import lumarca.util.ProcessingObject;
 import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
 import processing.video.Capture;
+import processing.video.MovieMaker;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 
@@ -70,6 +75,14 @@ public class Lumarca extends PApplet {
 	
 	private static LineProgram iwp;
 	
+	private MovieMaker mm;  // Declare MovieMaker object
+	
+	private boolean FULL_SCREEN = false;
+	
+	public static boolean DIY = true;
+	
+	public  static boolean LOGGING = true;
+	
 	private enum PROGRAM {
 		CALAB, WAVE, WAVE2, SHOW, GAME, ONE_WIRE, 
 		OBJ_PROGRAM, TIMER, BOUNCE, CAM, MUDTUB, VORTEX, SOUND;
@@ -100,7 +113,7 @@ public class Lumarca extends PApplet {
 			case VORTEX:
 				return new ColorVortexProgram(lumarca);
 			case SOUND:
-				return new FFTVis(lumarca);
+				return new PlayMovieProgram(lumarca);
 			default:
 				return new CalabProgram(lumarca);
 			}
@@ -124,15 +137,18 @@ public class Lumarca extends PApplet {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
         GraphicsDevice displayDevice=ge.getDefaultScreenDevice(); 
         frame.setUndecorated(true); 
-        displayDevice.setFullScreenWindow(frame); 
-        Dimension fullscreen = frame.getSize(); 
-		
+
+		frame.removeNotify();
+        
+		if (FULL_SCREEN) {
+			displayDevice.setFullScreenWindow(frame);
+			Dimension fullscreen = frame.getSize();
+		}
+			
 		super.init();
 	}
 	
 	public void setup() {
-		
-		Capture.list();
 		
 		iwp = new IndividualLineProgram(this);
 		
@@ -141,8 +157,9 @@ public class Lumarca extends PApplet {
 		ProcessingObject.setPApplet(this); 
 		
 		size((int)WIN_WIDTH, (int)WIN_HEIGHT, OPENGL);
+		hint(DISABLE_OPENGL_2X_SMOOTH); 
 		
-		frame.setLocation(0, (int)-WIN_HEIGHT/2);
+		frame.setLocation(0, 0);//(int)-WIN_HEIGHT/2);
 
 		if(useCamera){
 			
@@ -160,8 +177,13 @@ public class Lumarca extends PApplet {
 		currentProgram = new SnakeProgram(this);
 		currentProgram = new WaveProgram(this);
 		currentProgram = new CalabProgram(this);
+
+		currentProgram = new Siggraph(this);
+//		currentProgram = new PlayMovieProgram(this);
 		
-		currentProgram = new Gizmodo(this);
+
+
+		  mm = new MovieMaker(this, width, height, "drawing.mov", 30, MovieMaker.VIDEO, MovieMaker.LOSSLESS);
 	}
 
 
@@ -175,7 +197,7 @@ public class Lumarca extends PApplet {
 					DEFAULT_CAMERA_X, 
 					DEFAULT_CAMERA_Y, 
 					0, 
-					0, 1, 0);
+					0, -1, 0);
 			
 //			camera(sin(cameraRot) * 1000, // eye
 //					0f, 
@@ -196,16 +218,17 @@ public class Lumarca extends PApplet {
 			
 			cameraRot += 0.005f;
 		} else{
-			cameraRot = 0.0f;
+			cameraRot = 0f;
+
 			camera(DEFAULT_CAMERA_X, DEFAULT_CAMERA_Y, DEFAULT_CAMERA_Z,
 					DEFAULT_CAMERA_X, 
 					DEFAULT_CAMERA_Y, 
 					0, 
-					0, 1, 0);
+					0, -1, 0);
 		}
 		
 
-	    glu.gluPerspective( 5.0, (float)width / (float)height, 1.0, 1000.0 );
+//	    glu.gluPerspective( 5.0, (float)width / (float)height, 1.0, 1000.0 );
 	}
 
 	public void draw() {
@@ -213,20 +236,38 @@ public class Lumarca extends PApplet {
 		
 		noCursor();
 		
+
+//		if(moveCamera)
+			moveCamera();
+//		else{
+//
+//			cameraRot = 0.0f;
+//			camera(DEFAULT_CAMERA_X, DEFAULT_CAMERA_Y, DEFAULT_CAMERA_Z,
+//					DEFAULT_CAMERA_X, 
+//					DEFAULT_CAMERA_Y, 
+//					0, 
+//					0, -1, 0);
+//		}
+		
 		PGraphicsOpenGL pgl = (PGraphicsOpenGL) g;
 
 		GL gl = pgl.beginGL();
 
 		currentProgram.update();
 		currentProgram.display(gl);
-
-
-		moveCamera();
+		
+		if(record)
+		  mm.addFrame();  // Add window's pixels to movie		 
 		
 		pgl.endGL();
 	}
 
+	boolean record = false;
+	
 	public void mousePressed() {
+
+	    mm.finish();  // Finish the movie if space bar is pressed!
+	    
 		cameraRot++;
 
 		currentProgram.mousePressed();
@@ -234,6 +275,9 @@ public class Lumarca extends PApplet {
 
 	public void keyPressed() { // adjust globe[] accordingly
 
+		if(key == 'r')
+			record= true;
+		
 		if (key == ' ')
 			moveCamera = !moveCamera;
 		
@@ -280,7 +324,7 @@ public class Lumarca extends PApplet {
 		case '=':
 			currentProgram = PROGRAM.VORTEX.eval(this);
 			break;
-		case '`':
+		case '+':
 			currentProgram = PROGRAM.SOUND.eval(this);
 			break;
 		default:
