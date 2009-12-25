@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.program.LineProgram;
 import lumarca.timer.ProgramTimer;
 
@@ -14,7 +14,7 @@ public class StoryProgram extends LineProgram {
 	
 	protected List<ProgramTimer> timers = new ArrayList<ProgramTimer>();
 	
-	public StoryProgram(LumarcaPRO lumarca) {
+	public StoryProgram(Lumarca lumarca) {
 		super(lumarca);
 	}
 

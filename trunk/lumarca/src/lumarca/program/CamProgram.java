@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.Util;
@@ -18,7 +18,7 @@ public class CamProgram extends LineProgram {
 	private PImage pimgs[];
 	private int ratio;
 	
-	public CamProgram(LumarcaPRO lumarca, Capture camera) {
+	public CamProgram(Lumarca lumarca, Capture camera) {
 		super(lumarca);
 		
 		cam = camera;

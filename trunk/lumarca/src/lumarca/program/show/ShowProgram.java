@@ -1,6 +1,6 @@
 package lumarca.program.show;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.program.GameProgram;
 import lumarca.program.ObjProgram;
 import lumarca.program.OtherSnakeProgram;
@@ -15,7 +15,7 @@ import lumarca.timer.ProgramTimer;
 public class ShowProgram extends StoryProgram{
 
 	
-	public ShowProgram(LumarcaPRO lumarca) {
+	public ShowProgram(Lumarca lumarca) {
 		super(lumarca);
 		
 //		timers.add(new ProgramTimer(10, 50000, new WaterProgram(lumarca, 0.98f, 200)));

@@ -2,12 +2,12 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 
 
 public class CalabProgram extends LineProgram {
 
-	public CalabProgram(LumarcaPRO lumarca) {
+	public CalabProgram(Lumarca lumarca) {
 		super(lumarca);
 	}
 

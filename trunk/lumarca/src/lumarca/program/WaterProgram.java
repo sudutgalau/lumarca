@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.Util;
@@ -21,7 +21,7 @@ public class WaterProgram extends LineProgram {
 	private float drag = 0.99f;
 	private int waterHeight = 200;
 
-	public WaterProgram(LumarcaPRO lumarca, float drag, int waterHeight) {
+	public WaterProgram(Lumarca lumarca, float drag, int waterHeight) {
 		super(lumarca);
 
 		this.drag = drag;

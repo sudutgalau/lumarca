@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.util.Coord;
 import lumarca.util.Util;
 import processing.core.PApplet;
@@ -12,7 +12,7 @@ public class WaveProgram2 extends LineProgram {
 
 	private float waveRot = 0.0f;
 	
-	public WaveProgram2(LumarcaPRO lumarca) {
+	public WaveProgram2(Lumarca lumarca) {
 		super(lumarca);
 	}
 

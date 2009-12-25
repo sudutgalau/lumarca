@@ -1,6 +1,6 @@
 package lumarca.program.show;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.obj.Pyramid;
 import lumarca.program.AnimTextProgram;
 import lumarca.program.ColorBounceProgram;
@@ -18,7 +18,7 @@ import lumarca.timer.ProgramTimer;
 public class Gizmodo extends StoryProgram{
 
 	
-	public Gizmodo(LumarcaPRO lumarca) {
+	public Gizmodo(Lumarca lumarca) {
 		super(lumarca);
 
 //		timers.add(new ProgramTimer(10, 30000, new AnimTextProgram(lumarca)));
