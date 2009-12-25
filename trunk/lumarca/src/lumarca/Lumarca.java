@@ -77,7 +77,7 @@ public class Lumarca extends PApplet {
 	
 	private MovieMaker mm;  // Declare MovieMaker object
 	
-	private boolean FULL_SCREEN = false;
+	private boolean FULL_SCREEN = true;
 	
 	public static boolean DIY = true;
 	
