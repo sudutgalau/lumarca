@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.obj.Shape;
 import lumarca.program.story.StoryProgram;
 import lumarca.timer.ProgramTimer;
@@ -15,14 +15,14 @@ import processing.core.PApplet;
 
 public class HearProgram extends StoryProgram {
 	
-	Coord center  = new Coord(LumarcaPRO.WIN_WIDTH/2 + 50f, 150f, 50 * 5);
+	Coord center  = new Coord(Lumarca.WIN_WIDTH/2 + 50f, 150f, 50 * 5);
 	Boat boat = new Boat(center, 450f);
 	
 	float end = 0.3f;
 	float rot = 0;
 	int dir = -1;
 	
-	public HearProgram(LumarcaPRO lumarca) {
+	public HearProgram(Lumarca lumarca) {
 		super(lumarca);
 
 

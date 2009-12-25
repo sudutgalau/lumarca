@@ -1,13 +1,13 @@
 package lumarca.program;
 
 /**
- * This file is part of the Snake program for the LumarcaPRO project.
+ * This file is part of the Snake program for the Lumarca project.
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.program.snake.Snake;
 
 public class OtherSnakeProgram extends LineProgram {
@@ -15,7 +15,7 @@ public class OtherSnakeProgram extends LineProgram {
     Snake snake;
     public static boolean drawMesh = false;
 	
-	public OtherSnakeProgram(LumarcaPRO lumarca) {
+	public OtherSnakeProgram(Lumarca lumarca) {
 		super(lumarca);
 //		lumarca.frameRate(5);
 		snake = new Snake();

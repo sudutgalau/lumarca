@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.util.Coord;
 import lumarca.util.HeightCoordComparator;
@@ -22,7 +22,7 @@ public class ObjFile extends Shape {
 	private OBJModel model;
 	private float size;
 	
-	public ObjFile(LumarcaPRO lumarca, Coord center, Coord color, String fileName, float size){
+	public ObjFile(Lumarca lumarca, Coord center, Coord color, String fileName, float size){
 		  model = new OBJModel(lumarca);
 		  model.load(fileName);
 		  this.center = center;

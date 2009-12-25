@@ -2,7 +2,7 @@ package lumarca.program.hear;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.program.story.StepLineProgram;
 import lumarca.util.Coord;
 import lumarca.util.Util;
@@ -13,7 +13,7 @@ public class DarkWaveProgram extends StepLineProgram {
 
 	private float waveRot = 0.0f;
 	
-	public DarkWaveProgram(LumarcaPRO lumarca) {
+	public DarkWaveProgram(Lumarca lumarca) {
 		super(lumarca);
 	}
 

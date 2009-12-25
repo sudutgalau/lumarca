@@ -1,13 +1,13 @@
 package lumarca.program.addons;
 
 /**
- * This file is part of the Snake program for the LumarcaPRO project.
+ * This file is part of the Snake program for the Lumarca project.
  * By Elie Zananiri, 2009 - http://www.silentlycrashing.net/
  */
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.lineMap.Line;
 import lumarca.program.LineProgram;
 import lumarca.util.Coord;
@@ -28,7 +28,7 @@ public class FFTVis extends LineProgram{
 	public float[] fftData = new float[16];
     public static Thread thread;
 	
-    public FFTVis(LumarcaPRO lumarca) {
+    public FFTVis(Lumarca lumarca) {
     	super(lumarca);
 
 //		if (thread == null) {

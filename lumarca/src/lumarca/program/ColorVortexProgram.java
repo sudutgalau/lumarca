@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.obj.Diamond;
 import lumarca.util.Coord;
 import lumarca.util.Util;
@@ -44,7 +44,7 @@ public class ColorVortexProgram extends LineProgram {
 		firstRun = true;
 	}
 	
-	public ColorVortexProgram(LumarcaPRO lumarca) {
+	public ColorVortexProgram(Lumarca lumarca) {
 		super(lumarca);
 		lumarca.frameRate(60);
 		// instantiate vars

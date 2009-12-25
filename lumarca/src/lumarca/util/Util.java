@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.lineMap.LineMap;
 import lumarca.obj.TrianglePlane;
 import processing.core.PApplet;
@@ -14,7 +14,7 @@ public class Util extends ProcessingObject {
 
 	public static final Coord zeroCoord = new Coord(0,0,0);
 	
-	static int[] depths = new int[256];//LumarcaPRO.LINE];
+	static int[] depths = new int[256];//Lumarca.LINE];
 
 	public static float distribute(int maxDupes, float min, float max) {
 		int depth = (int) pApplet.random(min, max);
@@ -320,7 +320,7 @@ public class Util extends ProcessingObject {
 	} 
 	
 	public static void log(String str){
-		if(LumarcaPRO.LOGGING){
+		if(Lumarca.LOGGING){
 			System.out.println(str);
 		}
 	}

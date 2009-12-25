@@ -2,15 +2,15 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.LumarcaPRO;
+import lumarca.Lumarca;
 import lumarca.util.ProcessingObject;
 
 
 public abstract class LineProgram extends ProcessingObject{
 
-	protected LumarcaPRO lumarca;
+	protected Lumarca lumarca;
 
-	public LineProgram(LumarcaPRO lumarca) {
+	public LineProgram(Lumarca lumarca) {
 		super();
 		this.lumarca = lumarca;
 	}
@@ -20,11 +20,11 @@ public abstract class LineProgram extends ProcessingObject{
 	public abstract void keyPressed();
 	public abstract void mousePressed();
 	
-	public LumarcaPRO getLumarca() {
+	public Lumarca getLumarca() {
 		return lumarca;
 	}
 	
-	public void setLumarca(LumarcaPRO lumarca) {
+	public void setLumarca(Lumarca lumarca) {
 		this.lumarca = lumarca;
 	}
 
