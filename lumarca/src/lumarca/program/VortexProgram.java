@@ -2,7 +2,7 @@ package lumarca.program;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.util.Coord;
 import lumarca.util.Util;
 
@@ -32,7 +32,7 @@ public class VortexProgram extends LineProgram {
 	// use code from ledTile series
 	
 	
-	public VortexProgram(Lumarca lumarca) {
+	public VortexProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		// instantiate vars
 		lumarca.println("totalSegments = "+totalSegments);

@@ -4,7 +4,7 @@ import javax.media.opengl.GL;
 
 import processing.core.PApplet;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.util.Coord;
 import lumarca.util.Util;
 
@@ -15,7 +15,7 @@ public class ColorBounceProgram extends LineProgram {
 	private float tol = .1f;
 	private float lerpVal = 0.005f;
 	
-	public ColorBounceProgram(Lumarca lumarca) {
+	public ColorBounceProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 	}
 

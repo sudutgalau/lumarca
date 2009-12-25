@@ -2,7 +2,7 @@ package lumarca.program.addons;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.program.LineProgram;
 import lumarca.util.Coord;
 import lumarca.util.Util;
@@ -13,7 +13,7 @@ public class PerlinCloudProgram extends LineProgram {
 
        private float cloudPos = 0.0f;
        
-       public PerlinCloudProgram(Lumarca lumarca) {
+       public PerlinCloudProgram(LumarcaPRO lumarca) {
                super(lumarca);
        }
 

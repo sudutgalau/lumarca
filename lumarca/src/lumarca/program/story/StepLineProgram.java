@@ -1,6 +1,6 @@
 package lumarca.program.story;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.program.LineProgram;
 
 public abstract class StepLineProgram extends LineProgram {
@@ -8,7 +8,7 @@ public abstract class StepLineProgram extends LineProgram {
 	protected int startMillis;
 	protected int changeMillis;
 	
-	public StepLineProgram(Lumarca lumarca) {
+	public StepLineProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 
 //		startMillis = pApplet.millis();

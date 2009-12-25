@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import lumarca.Lumarca;
+import lumarca.LumarcaPRO;
 import lumarca.obj.Pyramid;
 import lumarca.obj.Shape;
 import lumarca.program.LineProgram;
@@ -18,7 +18,7 @@ public class VolcanoProgram extends LineProgram {
 	public List<LavaParticle> particleList = new ArrayList<LavaParticle>();
 	public List<Shape> lavaList = new ArrayList<Shape>();
 	
-	public VolcanoProgram(Lumarca lumarca) {
+	public VolcanoProgram(LumarcaPRO lumarca) {
 		super(lumarca);
 		
 		Coord basePos = lumarca.lineMap.midPosition.clone();
@@ -26,10 +26,10 @@ public class VolcanoProgram extends LineProgram {
 
 		base = new Pyramid(basePos, 300f);
 		base2 = new Pyramid(basePos, 300f);
-		base2.rotateOnY(Lumarca.PI/4);
+		base2.rotateOnY(LumarcaPRO.PI/4);
 
-		base.rotateOnX(Lumarca.PI);
-		base2.rotateOnX(Lumarca.PI);
+		base.rotateOnX(LumarcaPRO.PI);
+		base2.rotateOnX(LumarcaPRO.PI);
 	}
 
 
