@@ -145,12 +145,17 @@ public class ObjFile extends Shape {
 			Coord coord1 = result.get(0);
 			Coord coord2 = result.get(1);
 
-			if (coord1.y > line.bottom.y) {
-				coord1 = line.bottom;
-			}
-			if (coord2.y < line.bottom.y) {
-				Util.drawLine(gl, color, coord1, coord2);
-			}
+//			if (coord1.y > line.bottom.y) {
+//				coord1 = line.bottom;
+//			}
+//			if (coord2.y < line.bottom.y) {
+//				Util.drawLine(gl, color, coord1, coord2);
+//			}
+//			if (coord2.y < line.top.y) {
+//				Util.drawLine(gl, color, coord1, line.top);
+//			}
+
+			Util.drawLine(gl, color, coord1, coord2);
 		}
 
 		if (result.size() > 2) {
@@ -281,6 +286,10 @@ public class ObjFile extends Shape {
 		}
 	}
 
+	public void setSize(float size){
+		this.size = size;
+	}
+	
 	private Coord getCoord(Coord vert){
 		Coord result = new Coord(vert);
 		
