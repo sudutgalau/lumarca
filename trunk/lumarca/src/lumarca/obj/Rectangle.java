@@ -71,6 +71,13 @@ public class Rectangle extends Shape {
 	}
 
 	@Override
+	public void setCenter(Coord center) {
+		for(SimpleShape shape: parts){
+			shape.setCenter(center);
+		}
+	}
+
+	@Override
 	public void drawShape(GL gl) {
 		for(Shape shape: parts){
 			shape.drawShape(gl);
