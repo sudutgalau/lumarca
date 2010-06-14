@@ -36,7 +36,7 @@ import lumarca.util.ProcessingObject;
 import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
 import processing.video.Capture;
-import processing.video.MovieMaker;
+//import processing.video.MovieMaker;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 
@@ -75,7 +75,7 @@ public class Lumarca extends PApplet {
 	
 	private static LineProgram iwp;
 	
-	private MovieMaker mm;  // Declare MovieMaker object
+//	private MovieMaker mm;  // Declare MovieMaker object
 	
 	private boolean FULL_SCREEN = true;
 	
@@ -183,7 +183,7 @@ public class Lumarca extends PApplet {
 		
 
 
-		  mm = new MovieMaker(this, width, height, "drawing.mov", 30, MovieMaker.VIDEO, MovieMaker.LOSSLESS);
+//		  mm = new MovieMaker(this, width, height, "drawing.mov", 30, MovieMaker.VIDEO, MovieMaker.LOSSLESS);
 	}
 
 
@@ -256,8 +256,8 @@ public class Lumarca extends PApplet {
 		currentProgram.update();
 		currentProgram.display(gl);
 		
-		if(record)
-		  mm.addFrame();  // Add window's pixels to movie		 
+//		if(record)
+//		  mm.addFrame();  // Add window's pixels to movie		 
 		
 		pgl.endGL();
 	}
@@ -266,7 +266,7 @@ public class Lumarca extends PApplet {
 	
 	public void mousePressed() {
 
-	    mm.finish();  // Finish the movie if space bar is pressed!
+//	    mm.finish();  // Finish the movie if space bar is pressed!
 	    
 		cameraRot++;
 
