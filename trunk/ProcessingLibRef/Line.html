@@ -1,0 +1,40 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		<div class="content">Contact: matt.parker.creates@gmail.com<a href="mailto:%20maddparker@gmail.com"></a><br>
+		</div>
+		
+		<div class="librarytitle">
+		  <h3>Line</h3></div>
+
+<div class="colone-alt">
+    <p>
+    	The Line class holds the top and bottom coordinates for a given line.<em></em>
+	</p>
+	
+</div>
+
+<div class="twocol-alt"> 
+  <p><br>
+    Line class    
+    <p>
+    Important Fields:
+    <ol>
+    	PVector bottom - the bottom of the line.<br>
+    	PVector top - the top of the line.  
+    </ol>  
+    <p>
+ 	Example usage:
+    <pre>
+   Line[] lines = lumarca.getLines();                   //Get all Lumarca Lines
+              
+	for (int lineNum = 0; lineNum < lines.length; lineNum++) { //Go through all the lines
+		Line line = lines[lineNum];                        //Get each line                   
+		println(line.bottom);							   //Print the bottom coord        
+		println(line.top);							   	   //Print the top coord
+	}
+    </pre>
+</div>
+<!--#include virtual="footer.html" -->
+    
+    

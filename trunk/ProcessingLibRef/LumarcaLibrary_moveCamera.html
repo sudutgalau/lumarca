@@ -1,0 +1,55 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3>
+        <p>LumarcaLibrary class: moveCamera(float rot)</h3>
+	    <h4>Example:</h4>
+  <pre>
+  
+  Shape shape;
+  float rot = 0;
+  
+   void setup(){
+   		Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+        
+        	shape = new ObjFile(this, center, new PVector(1, 0, 0), "obj/cube.obj", 300);
+	}
+    
+    void draw() {
+			rot += 0.1;
+           lumarca.drawWireFrame(shape);
+			lumarca.moveCamera(rot);  
+     } 
+    
+    </pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Rotate the camera out of projection mode, into simulated 3D mode.<br>
+	    This is useful when attempting to simulate an animation so you can get an idea of what it will look like on the strings.
+	    <br>
+      <b>Note:</b> Will not work projected on a Lumarca, for testing and simulation only.</p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>
+	  float rot
+      	<ol>
+	  	 amount to rotate camera
+      	</ol>
+	</ol>
+<h4>Related</h4>
+	<ol>
+<a href="LumarcaLibrary_drawWireframe.html">drawWireframe(Shape shape)</a><br />
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    

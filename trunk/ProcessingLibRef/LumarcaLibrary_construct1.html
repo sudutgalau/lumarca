@@ -1,0 +1,58 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3>
+        <p>LumarcaLibrary class: LumarcaLibrary(PApplet pApplet, int numLines, boolean newMap)</h3>
+	    <h4>Example:</h4>
+  <pre>
+   void setup(){
+   
+   	Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+	
+		PVector minPos = new PVector();
+		lumarca.getMinPosition(minPos);
+
+   	println(minPos);        //print out the x,y,z value of the edge of the volume
+	}</pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Constructor. Create a LumarcaLibraryobject used to make lumarca content. <br>
+      </p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>
+	  PApplet 
+      	<ol>
+      	  Gives the Lumarca Library access to your sketch and all of the base processing functionality.</ol></ol>
+		<ol>
+	  int 
+      	<ol>
+      	  Number of lines in this lumarca configurations (example: 64, 128, 256, etc.)
+      	</ol>
+	  boolean 
+      	<ol>
+      	  Determines whether to use a previously constructed configuration of lines or a new one.  If it is false, it will create a new configuration, if true it will use a previously formed configuration.
+      	  
+      	</ol>
+	</ol>
+		<br>
+  
+  <h4>Related</h4>
+	<ol>
+
+<a href="LumarcaLibrary_construct1.html">LumarcaLibrary(PApplet pApplet, String fileName)</a><br />
+<a href="LumarcaLibrary_construct2.html">LumarcaLibrary(PApplet pApplet, int numLines, boolean newMap)</a>
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    

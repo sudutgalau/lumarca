@@ -1,0 +1,53 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3>
+        <p>LumarcaLibrary class: drawWireFrame(Shape shape)</h3>
+	    <h4>Example:</h4>
+  <pre>
+  
+  Shape shape;
+  
+   void setup(){
+   		Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+        
+        	shape = new ObjFile(this, center, new PVector(1, 0, 0), "obj/cube.obj", 300);
+	}
+    
+    void draw() {
+           lumarca.drawWireFrame(shape);  
+     } 
+    
+    </pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Draw the wireframe of the shape that was passed.<br>
+	    This is useful for seeing where an object is in 3D space and what scale it is.<br>
+      <b>Note:</b> Will not work projected on a Lumarca, for testing and simulation only.</p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>
+	  Shape shape 
+      	<ol>
+	  	 The Shape to be drawn.
+      	</ol>
+	</ol>
+<h4>Related</h4>
+	<ol>
+<a href="LumarcaLibrary_drawShape.html">drawShape(PVector color, Shape shape)</a><br />
+<a href="LumarcaLibrary_drawShapeNoDots.html">drawShapeNotDots(PVector color, Shape shape)</a><br />
+<a href="LumarcaLibrary_drawWireframe.html">drawWireframe(Shape shape)</a><br />
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    
