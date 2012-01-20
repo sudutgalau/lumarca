@@ -1,0 +1,31 @@
+a {
+	color: #6596fb;
+	text-decoration: none;
+}
+
+a:hover {
+	color: grey;
+}
+
+li {
+	list-style: circle outside;
+	margin-bottom: 10px;
+}
+
+#footer {
+	font-size: 10px;
+}
+
+#grading {
+	width: 400px;
+	border: 1px solid black;
+}
+
+.content {
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.links {
+	margin-bottom: 10px;
+}

@@ -1,0 +1,46 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3><p>LumarcaLibrary class: getLines()</h3>
+	    <h4>Example:</h4>
+  <pre>
+   void setup(){
+   
+   	Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+
+   	Line[] lines = lumarca.getLines();                   //Get all Lumarca Lines
+              
+   	for (int lineNum = 0; lineNum < lines.length; lineNum++) { //Go through all the lines
+           	Line line = lines[lineNum];                        //Get each line                   
+            	println(line.bottom);							   //Print the bottom coord
+   	}
+	}</pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Returns an aray of all the lines in the lumarca.  <br>
+	    This is useful for renderings based on the position of individual lines, such as
+      math equations. <br>
+  </p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>None.</ol><br>
+  
+  <h4>Related</h4>
+	<ol>
+    	<a href="Line.html">Line</a><br>
+        <a href="LumarcaLibrary_drawLineNoDots.html">drawLineNoDots(PVector color, PVector top, PVector bottom)</a><br />
+	  <a href="LumarcaLibrary_drawLine.html">drawLine(PVector color, PVector top, PVector bottom)</a><br />
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    

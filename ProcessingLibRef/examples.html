@@ -1,0 +1,57 @@
+<a href="index.html">Home</a><br/>
+<p><br>
+    Simple Sine Wave Example:
+  
+   <pre>			 import processing.opengl.*;
+            
+            import objloader.*;
+            import lumarca.lineMap.*;
+            import lumarca.util.*;
+            import lumarca.obj.*;
+            import lumarca.lib.*;
+            import processinglib.*;
+            import lumarca.action.*;
+            import template.library.*;
+            
+            LumarcaLibrary lumarca;  // The Lumarca Library
+            float waveRot = 0.0f;    // Var to move the Sine Wave over time
+            
+            void setup() {
+            
+              ProcessingObject.setPApplet(this);
+            
+              size(1024, 768 * 2, OPENGL);                      //Lumarca requires use of the OPENGL renderer. 
+                                                                //The size should be the same as the native resolution of the projector
+                                                                //and *double* the height of the projector.
+            
+              lumarca = new LumarcaLibrary(this, 256, false);   //Create the LumarcaLibrary.  Pass the PApplet, the number of lines, 
+                                                                //and whether to create a new map or use an existing one
+            }
+            
+            void draw() {
+            <br>              //lumarca.moveCamera(waveRot * 10);              //Comment in to see the simulation of the 3D Sketch
+
+              waveRot += 0.001f;                                //Move Sine Wave
+            
+              Line[] lines = lumarca.getLines();                //Get all Lumarca Lines
+              
+              for (int lineNum = 0; lineNum < lines.length; lineNum++) { //Go through all the lines
+            
+                PVector coord = lines[lineNum].bottom;                   //Get each line                   
+            
+                lumarca.drawLine(
+                    new PVector(0, 0, 1),        //the color of the line (this is blue, Lumarca, like OPENGL, goes from 0-1 instead of 0-255)
+                    //top of the line
+                    new PVector(coord.x,         //always use the same X position of the line        
+                                coord.y  - PApplet.sin(coord.x/ 100 + waveRot * 50) * 150 - 200, //Some math to make a sine wave
+                                coord.z),         //always use the same Z position of the line  
+                    //bottom of the line
+                    new PVector(
+                                coord.x,         //always use the same X position of the line  
+                                coord.y - PApplet.sin(coord.x / 100 + waveRot * 50) * 150 - 150, //Some math to make a sine wave
+                                coord.z));       //always use the same Z position of the line 
+              }
+            }
+   </pre>
+    
+    

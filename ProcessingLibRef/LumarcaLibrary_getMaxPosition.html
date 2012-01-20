@@ -1,0 +1,60 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3>
+        <p>LumarcaLibrary class: getMaxPosition(PVector p)</h3>
+	    <h4>Example:</h4>
+  <pre>
+   void setup(){
+   
+   	Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+	
+		PVector maxPos = new PVector();
+		lumarca.getMaxPosition(maxPos);
+
+   	println(maxPos);        //print out the x,y,z value of the edge of the volume
+	}</pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Sets the paased PVector to the maximum coordinates of the volume.  <br>
+      This is useful for placing shapes at the edge of the volume or bounding motion inside of the volume.</p>
+	  <p><b>Note:</b> this function does not return anything.  It accepts a PVector and sets it value. This is useful to reduce the number of objects produced and a standard approach when dealing with graphics programming.<br>
+      </p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>
+	  PVector 
+      	<ol>
+	  	 This PVector is set to have the x,y,z coordinates of the maximum of the volume.
+		</ol>
+	</ol><br>
+  
+  <h4>Related</h4>
+	<ol>
+<a href="LumarcaLibrary_getLines.html">getLines()</a><br />
+<a href="LumarcaLibrary_getMaxX.html">getMaxX()</a><br />
+<a href="LumarcaLibrary_getMaxY.html">getMaxY()</a><br />
+<a href="LumarcaLibrary_getMaxZ.html">getMaxZ()</a><br />
+<a href="LumarcaLibrary_getMidX.html">getMidX()</a><br />
+<a href="LumarcaLibrary_getMidY.html">getMidY()</a><br />
+<a href="LumarcaLibrary_getMidZ.html">getMidZ()</a><br />
+<a href="LumarcaLibrary_getMinX.html">getMinX()</a><br />
+<a href="LumarcaLibrary_getMinY.html">getMinY()</a><br />
+<a href="LumarcaLibrary_getMinZ.html">getMinZ()</a><br />
+<a href="LumarcaLibrary_getCenterPosition.html">getCenterPosition(PVector p)</a><br />
+<a href="LumarcaLibrary_getMinPosition.html">getMinPosition(PVector p)</a><br />
+<a href="LumarcaLibrary_getMaxPosition.html">getMaxPosition(PVector p)</a>
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    

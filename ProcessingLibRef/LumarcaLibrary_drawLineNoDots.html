@@ -1,0 +1,67 @@
+<!--#include virtual="header.html" -->
+
+	<div class="span-16">
+		
+	  <div class="librarytitle"></div>
+	  <div class="twocol-alt">
+	    <h3>
+        <p>LumarcaLibrary class: drawLineNoDots(PVector color, PVector top, PVector bottom)</h3>
+	    <h4>Example:</h4>
+  <pre>
+   void setup(){
+   		Lumarca lumarca = new LumarcaLibrary(this, 256, false);  //create LumarcaLibrary
+	}
+    
+    void draw() {
+           Line[] lines = lumarca.getLines();                //Get all Lumarca Lines
+              
+           for (int lineNum = 0; lineNum < lines.length; lineNum++) { //Go through all the lines
+            
+            	Line line = lines[lineNum];                   //Get each line                   
+           	lumarca.drawLineNoDots(new PVector(0, 0, 1), line.top, line.bottom);  //draw each line
+          	}
+     } 
+    
+    </pre>
+  
+ 
+  <h4>Description</h4>
+	<ol>
+	  <p>Draw line a solid color.</p>
+	</ol>
+	<h4>Parameteres</h4>
+	<ol>
+	  PVector color 
+   	  <ol>
+	  	 This PVector sets the color of the line.  The x is the red value, the y is the green value, and the blue is the y value.<br>  
+         <b>Note:</b> Lumarca colors go from 0-1, not 0-255.  So if you want something to be half red, the value is 0.5.
+	  </ol>
+	</ol>
+	<ol>
+	  PVector top 
+      	<ol>
+	  	 The coordinates of the top of the line.
+		</ol>
+	</ol>
+	<ol>
+	  PVector bottom 
+      	<ol>
+	  	 The coordinates of the bottom of the line.
+		</ol>
+	</ol>
+  
+  <h4>Related</h4>
+	<ol>
+<a href="LumarcaLibrary_drawLine.html">drawLine(PVector color, PVector top, PVector bottom)</a><br />
+<a href="LumarcaLibrary_drawLineNoDots.html">drawLineNoDots(PVector color, PVector top, PVector bottom)</a><br />
+<a href="LumarcaLibrary_drawShapeNoDots.html">drawShape(PVector color, Shape shape)</a><br />
+<a href="LumarcaLibrary_drawShape.html">drawShapeNotDots(PVector color, Shape shape)</a>
+     </ol>
+    
+    <br>
+
+
+</div>
+<!--#include virtual="footer.html" -->
+    
+    
