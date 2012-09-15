@@ -12,6 +12,8 @@ import processing.core.PVector;
 
 
 public class Util extends ProcessingObject {
+	
+	public final static int DOT_HEIGHT = 5; // height of dots in pxs
 
 	public static final Coord zeroCoord = new Coord(0,0,0);
 	
@@ -161,7 +163,8 @@ public class Util extends ProcessingObject {
 	public static void drawLine(GL gl, PVector color, PVector top, PVector bottom, LineMap lineMap){
 
 		
-		float alt = pApplet.map(bottom.z, lineMap.maxPosition.z, lineMap.minPosition.z, 0f, 0.5f);
+//		float alt = pApplet.map(bottom.z, lineMap.maxPosition.z, lineMap.minPosition.z, 0f, 0.5f);
+		
 		
 		gl.glLineWidth(1f);
 		
@@ -169,42 +172,48 @@ public class Util extends ProcessingObject {
 		gl.glColor3f(color.x, color.y, color.z);
 		gl.glBegin(GL.GL_LINE_STRIP);
 		gl.glVertex3f(bottom.x,
-					  bottom.y + bottom.y * (alt * alt),
+					  bottom.y,
 					  bottom.z);
 		
 		gl.glVertex3f(top.x,
-					top.y + top.y * (alt * alt),
+					top.y,
 					top.z);
 		gl.glEnd();
 		
 		//Bottom Dot
-		gl.glColor3f(1f,1f,1f);
-
-		gl.glBegin(GL.GL_LINE_STRIP);
-		gl.glVertex3f(top.x,
-				      top.y + top.y * (alt * alt),
-					  top.z);
-
 		
-		gl.glVertex3f(top.x,
-				(top.y + LineMap.DOT_HEIGHT) + (top.y + LineMap.DOT_HEIGHT) * (alt * alt),
-				top.z);
-		
-		gl.glEnd();
+		if(top.y != lineMap.minPosition.y  && top.y != lineMap.maxPosition.y){
+			gl.glColor3f(1f,1f,1f);
+	
+			gl.glBegin(GL.GL_LINE_STRIP);
+			gl.glVertex3f(top.x,
+					      top.y,
+						  top.z);
+	
+			
+			gl.glVertex3f(
+					top.x,
+					(top.y + DOT_HEIGHT),
+					top.z);
+			
+			gl.glEnd();
+		}
 		
 		//Bottom Dot
-		gl.glColor3f(1f,1f,1f);
-
-		gl.glBegin(GL.GL_LINE_STRIP);
-		
-		gl.glVertex3f(bottom.x,
-				bottom.y + bottom.y * (alt * alt),
-				bottom.z);
-		gl.glVertex3f(bottom.x,
-				(bottom.y - LineMap.DOT_HEIGHT) + (bottom.y - LineMap.DOT_HEIGHT) * (alt * alt),
-				bottom.z);
-		
-		gl.glEnd();
+		if(bottom.y != lineMap.minPosition.y  && bottom.y != lineMap.maxPosition.y){
+			gl.glColor3f(1f,1f,1f);
+	
+			gl.glBegin(GL.GL_LINE_STRIP);
+			
+			gl.glVertex3f(bottom.x,
+					bottom.y,
+					bottom.z);
+			gl.glVertex3f(bottom.x,
+					(bottom.y + DOT_HEIGHT),
+					bottom.z);
+			
+			gl.glEnd();
+		}
 	}
 	
 	public static void drawLineNoDots(GL gl, PVector color, PVector top, PVector bottom, LineMap lineMap){
