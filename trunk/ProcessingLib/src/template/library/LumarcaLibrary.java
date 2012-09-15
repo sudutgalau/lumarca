@@ -28,7 +28,9 @@ package template.library;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
+import lumarca.cache.LumarcaFrame;
 import lumarca.lib.LumarcaLib;
 import lumarca.lineMap.Line;
 import lumarca.obj.Shape;
@@ -74,16 +76,9 @@ public class LumarcaLibrary implements PConstants{
 		LumarcaObject.lumarca = this;
 		
 		String[] map = pApplet.loadStrings(fileName);
-		float lines[] = new float[map.length];
-
-		for (int i = 0; i < map.length; i++) {
-//		for (String line: lines) {
-			lines[i] = Float.parseFloat(map[i]);
-		}
 		
-		lib = new LumarcaLib(pApplet, lines);
+		lib = new LumarcaLib(pApplet, map);
 		lib.init();
-
 		
 		pApplet.frame.setLocation(0, 0);
 		
@@ -104,8 +99,8 @@ public class LumarcaLibrary implements PConstants{
 		this.pApplet = pApplet;
 		lib = new LumarcaLib(pApplet, numLines, newMap);
 		ProcessingObject.pApplet = pApplet;
+		LumarcaObject.lumarca = this;
 		lib.init();
-
 		
 		pApplet.frame.setLocation(0, 0);
 		
@@ -181,6 +176,10 @@ public class LumarcaLibrary implements PConstants{
 	
 	public void getMaxPosition(PVector becomeCenter){
 		becomeCenter.set(lib.lineMap.maxPosition.x, lib.lineMap.maxPosition.y, lib.lineMap.maxPosition.z);
+	}
+	
+	public List<Line> getShapeLines(Shape shape){
+		return lib.lineMap.getShape(shape.color, shape);
 	}
 	
 	public void drawLineNoDots(PVector color, PVector top, PVector bottom){

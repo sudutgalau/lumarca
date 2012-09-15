@@ -12,12 +12,15 @@ public class Line extends ProcessingObject {
 	public Coord top;
 	public PVector color; // optional color value
 	
-	public Line(Coord bottom, Coord top) {
+	public float originalX;
+
+	public Line(Coord bottom, Coord top, float originalX) {
 		super();
 		this.bottom = bottom;
 		this.top = top;
 		interSectBottom = bottom.clone();
 		interSectBottom.y += 1000;
+		this.originalX = originalX;
 	}
 
 	public Line(Coord bottom, Coord top, PVector color) {
@@ -33,7 +36,7 @@ public class Line extends ProcessingObject {
 		if(color != null)
 			return new Line(this.bottom.clone(), this.top.clone(), Util.clonePVector(color));
 		else
-			return new Line(this.bottom.clone(), this.top.clone());
+			return new Line(this.bottom.clone(), this.top.clone(), originalX);
 	}
 	
 }

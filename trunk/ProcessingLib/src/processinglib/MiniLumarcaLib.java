@@ -6,8 +6,6 @@ import java.util.List;
 import javax.media.opengl.GL;
 
 import lumarca.cache.LumarcaCacher;
-import lumarca.cache.LumarcaFrame;
-import lumarca.cache.LumarcaSequence;
 import lumarca.lineMap.Line;
 import lumarca.obj.ObjFile;
 import lumarca.obj.Shape;
@@ -16,7 +14,7 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import template.library.LumarcaLibrary;
 
-public class DemoLumarcaLib extends PApplet {
+public class MiniLumarcaLib extends PApplet {
 
 	LumarcaLibrary lumarca;
 
@@ -24,17 +22,27 @@ public class DemoLumarcaLib extends PApplet {
 	
 	Shape shape;
 	
-	LumarcaSequence frames;
+	List<List<Line>> frames = new ArrayList<List<Line>>();
 
 	public void setup() {
 
-		ProcessingObject.setPApplet(this);
+//		ProcessingObject.setPApplet(this);
+		
+//		848x480
+		
+//		10.5 inches wide at 1ft away
+//		4 3/4 from lens to bolt
+//		4 16x32x(3/16)
+//		BLICK: 32 x 40 (cut in half)
+//		Get chip board from blick
 
-		size(1024, 1536, OPENGL);
+		size(848, 480*2, OPENGL);
 
 		
-		lumarca = new LumarcaLibrary(this, "lineMap1024.txt");
-//		lumarca = new LumarcaLibrary(this, width*4, true);
+		lumarca = new LumarcaLibrary(this, "lineMap106.txt");
+//		lumarca = new LumarcaLibrary(this, width/8, true);
+		
+		System.out.println("LINES: " + lumarca.getLines().length);
 
 		PVector center = new PVector();
 		
@@ -44,27 +52,23 @@ public class DemoLumarcaLib extends PApplet {
 //		lumarca.getMaxPosition(max);
 //
 		shape = new ObjFile(this, center,
-				new PVector(0.1f, 0.1f, 0.1f), "obj/male head.obj",
-				20f);
+				new PVector(1, 0, 0), "obj/hand-free.obj",
+				30f);
 
 //		shape.center.z = lumarca.getMidZ();
 //		shape.center.y = lumarca.getMidY();
 //
-		shape.rotateOnZ(PI);
+		shape.rotateOnZ(PI/2);
 //		shape.rotateOnY(PI/2);
+//		
+//		for(float f = 0; shape.center.x < max.x; f+=0.1f){
+//			shape.center.x+=10f;
+//			frames.add(0,lumarca.lib.lineMap.getShape(shape.color, shape));
+//		}
+//		
+//		Cacher.saveFrames(frames, "test.txt");
 		
-		if(true){
-			for(float f = 0; f < TWO_PI; f+=0.1f){
-	//			shape.center.x+=10f
-				System.out.println(f);
-				shape.rotateOnY(0.1f);
-				LumarcaCacher.addFrame(new LumarcaFrame(lumarca.getShapeLines(shape)));
-			}
-	//		
-			LumarcaCacher.saveFrames("test4k.txt");
-		}
-		
-		frames = LumarcaCacher.loadFrames("test4k.txt");
+//		frames = Cacher.loadFrames("test.txt");
 //		
 //		System.out.println("frames: " + frames.size());
 		
@@ -73,17 +77,39 @@ public class DemoLumarcaLib extends PApplet {
 
 	boolean rot = false;
 	
+	int lineNum = 0;
+	
 	public void draw() {
-		frames.draw();
+		
+		Line[] lines = lumarca.getLines();
+		
+		lineNum++; 
+		
+		if(lineNum == lines.length){
+			lineNum = 0;
+		}
+
+		PVector coord1 = lines[lineNum].bottom;
+		PVector coord2 = lines[lineNum].top;
+		
+		lumarca.drawLine(
+						new PVector(0, 1, 0),
+						coord2,
+						coord1);
+
+		
+//		for(Line line: frames.get(frameCount%frames.size())){
+//			lumarca.drawLine(line.color, line.top, line.bottom);
+//		}
 		
 
 //		lumarca.calibration();
-////		
-		if(rot)
-			waveRot += 0.0001f;
-		
-		lumarca.moveCamera(waveRot * 300);
-		
+
+//		if(rot)
+//			waveRot += 0.001f;
+//		
+//		lumarca.moveCamera(waveRot * 30);
+//		
 //		Line[] lines = lumarca.getLines();
 //
 //		for (int lineNum = 0; lineNum < lines.length; lineNum++) {
@@ -130,6 +156,6 @@ public class DemoLumarcaLib extends PApplet {
 	}
 
 	public static void main(String _args[]) {
-		PApplet.main(new String[] { DemoLumarcaLib.class.getName() });
+		PApplet.main(new String[] { MiniLumarcaLib.class.getName() });
 	}
 }
