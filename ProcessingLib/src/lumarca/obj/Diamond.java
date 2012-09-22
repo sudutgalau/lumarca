@@ -125,15 +125,17 @@ public class Diamond extends Shape {
 		}
 	}
 
-	public Coord getCenter() {
-		return center;
-	}
-
 	public void setCenter(Coord center) {
 		this.center = center.clone();
 		for(Shape shape: parts){
 			shape.setCenter(center.clone());
 		}
+	}
+
+	@Override
+	public List<Line> getIntersections(PVector color) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

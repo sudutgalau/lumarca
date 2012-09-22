@@ -136,7 +136,7 @@ public class OBJModel {
 		materials = new Hashtable<String, Material>();
 
 		debug = new Debug(parent);
-		debug.enabled = true;
+		debug.enabled = false;
 	}
 
 	/**
@@ -615,6 +615,35 @@ public class OBJModel {
 			}
 		}
 	}
+	
+	//MATT FUNCTION
+	public void resize(float scale) {
+		resize(scale, scale, scale);
+	}
+	
+	public void resize(float scaleX, float scaleY, float scaleZ) {
+		int vertexCount = getVertexCount();
+
+		if (vertexCount == 0)
+			debug.println("OBJTransform - \tThe model has no verts. Have you loaded it yet?");
+		else {
+			BoundingBox box = new BoundingBox(parent, this);
+			
+			PVector v;
+			PVector center = box.getCenter();
+
+			for (int i = 0; i < vertexCount; i++) {
+				v = getVertex(i);
+				
+				PVector vec = PVector.sub(v, center);
+				vec.normalize();
+				
+				v.x = scaleX * vec.x + center.x;
+				v.y = scaleY * vec.y + center.y;
+				v.z = scaleZ * vec.z + center.z;
+			}
+		}
+	}
 
 	
 	/**
@@ -629,7 +658,7 @@ public class OBJModel {
 		else {
 			PVector v;
 			PVector m = new PVector(p.x, p.y, p.z);
-			m.mult(-1);
+//			m.mult(-1);   //FIXME?  Not sure why this is here, seems to be the opposite of what we want
 			
 			for (int i = 0; i < vertexCount; i++) {
 				v = getVertex(i);
@@ -637,14 +666,28 @@ public class OBJModel {
 			}
 		}
 	}
+	
 
 	/**
 	 * Helper function to move the origin point of the model to the center of the objects BoundingBox
 	 */
 	public void translateToCenter() {
 		BoundingBox box = new BoundingBox(parent, this);
-		translate(box.getCenter());
+		translate(PVector.mult(box.getCenter(), 1));  //FIXME?  Might need to be -1?
 	}
+
+//	public void makeTrueCenter() {
+//		BoundingBox box = new BoundingBox(parent, this);
+//		int vertexCount = getVertexCount();
+//
+//		PVector v;
+//		
+//		for (int i = 0; i < vertexCount; i++) {
+//			v = getVertex(i);
+//			v.add(m);
+//		}
+//	}
+
 
 	
 	/**

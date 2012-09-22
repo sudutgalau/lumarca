@@ -1,22 +1,22 @@
 package lumarca.obj;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.media.opengl.GL;
 
-import lumarca.lib.LumarcaLib;
 import lumarca.lineMap.Line;
 import lumarca.lineMap.LineMap;
 import lumarca.util.Coord;
 import lumarca.util.HeightCoordComparator;
 import lumarca.util.Util;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
+import saito.objloader.BoundingBox;
 import saito.objloader.Face;
 import saito.objloader.OBJModel;
 import saito.objloader.Segment;
@@ -26,25 +26,87 @@ public class ObjFile extends Shape {
 
 	public OBJModel model;
 	public float size;
-	public float scale;
+	
+	public PVector foCenter = new PVector(0,0,0);
 	
 	public PVector[] orgVerts;
+	
+	public BoundingBox boundingBox;
 	
 	private PVector white = new PVector(1, 1, 1);
 	
 	private static final Coord vec = new Coord(0, -1, 0);
 	
+	public Map<Integer, List<Integer>> vertexNeighbors;
+	
 	public ObjFile(PApplet lumarca, PVector center, PVector color, String fileName, float size){
 		  model = new OBJModel(lumarca);
 		  model.load(fileName);
-		  this.center = new Coord(center);
-		  this.color = color;
+		  model.resize(size);
+		  model.translateToCenter();
+		  model.translate(center);
+		  
 		  this.size = size;
 		  
-		  getOrgVerts();
+		  this.center = new Coord(center);
+		  this.color = color;
 		  
-		  resize();
-		  makeTrueCenter();
+		  boundingBox = new BoundingBox(pApplet, model);
+		  
+		  System.out.println("boundingBox: "  + boundingBox.getCenter());
+		  
+//		  getOrgVerts();
+		  
+//		  resize();
+//		  makeTrueCenter();
+	}
+	
+	public void setNeighbors(){
+		vertexNeighbors = new HashMap<Integer, List<Integer>>();
+		
+		int numVerts = model.getVertexCount();
+
+		Segment segment;
+		Face face;
+		
+		for (int i = 0; i < numVerts; i++) {
+			for (int s = 0; s < model.getSegmentCount(); s++) {
+				segment = model.getSegment(s);
+				for (int f = 0; f < segment.getFaceCount(); f++) {
+					face = (segment.getFace(f));
+
+					if (face.getVertIndexCount() > 0) {
+						boolean containVertext = false;
+
+						for (int fp = 1; fp < face.getVertIndexCount(); fp++) {
+							int vidx1 = face.getVertexIndex(fp);
+
+							if (vidx1 == i) {
+								containVertext = true;
+								break;
+							}
+						}
+
+						if (containVertext) {
+							Integer vert = new Integer(i);
+							
+							if(!vertexNeighbors.containsKey(vert)){
+								vertexNeighbors.put(vert, new ArrayList<Integer>());
+							}
+							
+							for (int fps = 1; fps < face.getVertIndexCount(); fps++) {
+								int vidx1 = face.getVertexIndex(fps);
+								if (vidx1 != i) {
+									vertexNeighbors.get(vert).add(new Integer(vidx1));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		System.out.println(vertexNeighbors);
 	}
 	
 	public PVector[] getOrgVerts(){
@@ -88,8 +150,6 @@ public class ObjFile extends Shape {
 			}
 		}
 		
-		scale = max.z - min.z;
-		
 		Coord trueCenter = new Coord((min.x + max.x)/2, (min.y + max.y)/2, (min.z + max.z)/2);
 		
 		for (int i = 0; i < model.getVertexCount(); i++) {
@@ -101,11 +161,70 @@ public class ObjFile extends Shape {
 		}
 	}
 	
-	public void resize() {
-		for(int i = 0; i < model.getVertexCount(); i++){
-			model.setVertex(i, PVector.mult(orgVerts[i], size));
+//	public void resize() {
+//		for(int i = 0; i < model.getVertexCount(); i++){
+//			model.setVertex(i, PVector.mult(orgVerts[i], size));
+//		}
+//		makeTrueCenter();
+//	}
+	
+	public List<PVector> getShellIntersection(Line line) {
+
+		List<PVector> result = new ArrayList<PVector>();
+
+		Coord inter = null;
+
+		Coord testCoord = new Coord();
+
+		Segment tmpModelSegment;
+		Face tmpModelElement;
+
+		// render all triangles
+		for (int s = 0; s < model.getSegmentCount(); s++) {
+
+			tmpModelSegment = model.getSegment(s);
+
+			for (int f = 0; f < tmpModelSegment.getFaceCount(); f++) {
+				tmpModelElement = (tmpModelSegment.getFace(f));
+
+				if (tmpModelElement.getVertIndexCount() > 0) {
+
+					for (int fp = 1; fp < tmpModelElement.getVertIndexCount() - 1; fp++) {
+
+
+						if (tmpModelElement.normalIndices.size() == tmpModelElement.getVertIndexCount()) {
+							PVector vn1 = model.getNormal(tmpModelElement.getNormalIndex(fp));
+							PVector vn2 = model.getNormal(tmpModelElement.getNormalIndex(fp));
+							PVector vn3 = model.getNormal(tmpModelElement.getNormalIndex(fp));
+						}
+						
+						int vidx1 = tmpModelElement.getVertexIndex(0);
+						int vidx2 = tmpModelElement.getVertexIndex(fp);
+						int vidx3 = tmpModelElement.getVertexIndex(fp + 1);
+
+						PVector v1 = model.getVertex(vidx1);
+						PVector v2 = model.getVertex(vidx2);
+						PVector v3 = model.getVertex(vidx3);
+
+						TrianglePlane tri = new TrianglePlane(foCenter, v1, v2, v3);
+
+						testCoord.x = line.bottom.x;
+						testCoord.y = line.bottom.y + 10000;
+						testCoord.z = line.bottom.z;
+
+						inter = Util.checkIntersectTri(tri, testCoord, vec);
+
+						if (inter != null) {
+							result.add(inter);
+						}
+
+					}
+				}
+
+			}
 		}
-		makeTrueCenter();
+
+		return result;
 	}
 	
 	public List<PVector> getIntersection(Line line) {
@@ -118,7 +237,14 @@ public class ObjFile extends Shape {
 
 		Segment tmpModelSegment;
 		Face tmpModelElement;
-		PVector v = null, vt = null, vn = null;
+
+		PVector bbMax = boundingBox.getMax();
+		PVector bbMin = boundingBox.getMin();
+		
+		if((bbMax.x < line.bottom.x) || (bbMin.z > line.bottom.z) || 
+				(bbMax.z < line.bottom.z) || (bbMin.z > line.bottom.z)){
+			return result;
+		}
 
 		// render all triangles
 		for (int s = 0; s < model.getSegmentCount(); s++) {
@@ -140,7 +266,7 @@ public class ObjFile extends Shape {
 						PVector v2 = model.getVertex(vidx2);
 						PVector v3 = model.getVertex(vidx3);
 
-						TrianglePlane tri = new TrianglePlane(center, v1, v2, v3);
+						TrianglePlane tri = new TrianglePlane(foCenter, v1, v2, v3);
 
 						testCoord.x = line.bottom.x;
 						testCoord.y = line.bottom.y + 10000;
@@ -160,14 +286,15 @@ public class ObjFile extends Shape {
 
 		return result;
 	}
-
 	
 	public void drawIntersect(GL gl, PVector color, Line fullLine) {
 		drawIntersect(gl, color, fullLine, true);
 	}
 	
 	public void drawIntersect(GL gl, PVector color, Line fullLine, boolean dots) {
-		
+ 
+		boundingBox = new BoundingBox(pApplet, model);
+		  
 		List<Line> lines = getIntersect(color, fullLine);
 
 		PVector offset = new PVector();
@@ -192,6 +319,9 @@ public class ObjFile extends Shape {
 	
 	public List<Line> getIntersect(PVector color, Line fullLine) {
 		List<Line> interLines = new ArrayList<Line>();
+
+		boundingBox = new BoundingBox(pApplet, model);
+		
 		List<PVector> result = getIntersection(fullLine);
 
 //		if(result.size() != 2 && result.size() != 0)
@@ -273,7 +403,6 @@ public class ObjFile extends Shape {
 	public void drawOBJ() {
 		pApplet.pushMatrix();
 		
-		pApplet.translate(center.x, center.y, center.z);
 	    model.draw();
 
 	    pApplet.popMatrix();
@@ -289,7 +418,7 @@ public class ObjFile extends Shape {
 				PVector v2 = model.getVertex(vertIndex[i + 1]);
 				PVector v3 = model.getVertex(vertIndex[i + 2]);
 
-				TrianglePlane tri = new TrianglePlane(center, v1, v2, v3);
+				TrianglePlane tri = new TrianglePlane(foCenter, v1, v2, v3);
 
 				tri.drawWireFrame(gl);
 			}
@@ -323,17 +452,23 @@ public class ObjFile extends Shape {
 	}
 
 	public void setSize(float size){
+		float percent = size/this.size;
+		model.resize(size);
 		this.size = size;
-		resize();
 	}
 	
-	private PVector getCoord(PVector vert){
-		PVector result = new Coord(vert);
+	public float getSize(){
+		return size;
+	}
+	
+	public PVector getCenter(){
+		return center;
+	}
+	
+	public void setCenter(PVector center){
+		PVector adjust = PVector.sub(center, this.center);
 		
-		result.x *= size;
-		result.y *= size;
-		result.z *= size;
-		
-		return result;
+		this.center = new Coord(center);
+		model.translate(adjust);
 	}
 }
