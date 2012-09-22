@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import codeanticode.glgraphics.GLGraphicsOffScreen;
+//import codeanticode.glgraphics.GLGraphicsOffScreen;
 
 import lumarca.lineMap.Line;
 import lumarca.lineMap.LineMap;
@@ -30,10 +30,12 @@ public class LumarcaLib {
 	public static float DEFAULT_CAMERA_Y = 0;
 	public static float DEFAULT_CAMERA_Z = 0;
 
+	public static float projectorZ = 0;
+	
 	private boolean moveCamera = false;
 	public float cameraRot = 0.0f;
 	
-	private PGraphicsOpenGL pgl;
+//	private PGraphicsOpenGL pgl;
 	public GL gl;
 	
 	private boolean FULL_SCREEN = false;
@@ -54,7 +56,7 @@ public class LumarcaLib {
 	boolean discreet = true;
 	boolean cut = true;
 	
-	GLGraphicsOffScreen offScreen;
+//	GLGraphicsOffScreen offScreen;
 
 	public LumarcaLib(PApplet pApplet, String[] lines) {
 		super();
@@ -67,7 +69,7 @@ public class LumarcaLib {
 		
 		setupLines = lines;
 		
-		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height/2);
+//		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height/2);
 	}
 	
 	public LumarcaLib(PApplet pApplet, int numLines, boolean newMap) {
@@ -77,7 +79,7 @@ public class LumarcaLib {
 		
 		NEW_MAP = newMap;
 
-		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height);
+//		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height);
 	}
 	
 	public LumarcaLib(PApplet pApplet, int numLines, boolean newMap, boolean discreet, boolean cut) {
@@ -90,29 +92,45 @@ public class LumarcaLib {
 		this.discreet = discreet;
 		this.cut = cut;
 
-		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height/2);
+//		offScreen = new GLGraphicsOffScreen(pApplet, pApplet.width, pApplet.height/2);
 	}
 	
 	public void init() {
 		
-		offScreen.beginDraw();
-		offScreen.noStroke();
-		offScreen.endDraw();
+//		offScreen.beginDraw();
+//		offScreen.noStroke();
+//		offScreen.endDraw();
 				
 		DEFAULT_CAMERA_X = pApplet.width / 2.0f;
-		DEFAULT_CAMERA_Y = pApplet.height/2.0f;
-		DEFAULT_CAMERA_Z = (pApplet.height/2.0f)/ PApplet.tan(PApplet.PI * 60.0f / 360.0f);
-
-//		System.out.println(DEFAULT_CAMERA_X);
-//		System.out.println(DEFAULT_CAMERA_Y);
-//		System.out.println(DEFAULT_CAMERA_Z);
+		DEFAULT_CAMERA_Y = pApplet.height;
 		
+		if(projectorZ == 0){
+			DEFAULT_CAMERA_Z = (pApplet.height / 2.0f) / PApplet.tan(PApplet.PI * 30.0f / 180.0f);
+		} else {
+			DEFAULT_CAMERA_Z = projectorZ;
+		}
+		
+		//adjust camera to be at projector depth
 		pApplet.camera(DEFAULT_CAMERA_X, DEFAULT_CAMERA_Y, DEFAULT_CAMERA_Z, 
-				pApplet.width/2.0f, pApplet.height/2.0f, 0, 
-				0, 1, 0);
+				pApplet.width/2.0f, pApplet.height, 0, 
+				0, -1, 0);
 
-//		pApplet.frustum(left, 		right, bottom, 				top, 	near, far)
-//		pApplet.frustum(0, 	pApplet.width, 	pApplet.height,		0, 		0, 500.0f);
+
+		//Adjust Frustum
+		float cameraNear = DEFAULT_CAMERA_Z; //Near plane of the frutum
+		float cameraFar = DEFAULT_CAMERA_Z + pApplet.width * 20;//far plane of the frustum, kinda arbitrary
+
+//		float ymax = -pApplet.height; //top
+//		float ymin = 0;//bottom
+//		float xmin = pApplet.width/2.0f;//left
+//		float xmax = -xmin; //right
+
+		float ymax = -pApplet.height; //top
+		float ymin = 0;//bottom
+		float xmin = pApplet.width/2.0f;//left
+		float xmax = -xmin; //right
+
+		pApplet.frustum(xmin, xmax, ymin, ymax, cameraNear, cameraFar);
 		
 		pApplet.hint(PApplet.DISABLE_OPENGL_2X_SMOOTH); 
 		
@@ -123,6 +141,7 @@ public class LumarcaLib {
 			lineMap = new LineMap(LINE, DEFAULT_CAMERA_X, DEFAULT_CAMERA_Y, DEFAULT_CAMERA_Z, -pApplet.width, "lineMap" + LINE +".txt", discreet, cut);	
 		}
 		
+		LumarcaObject.lineMap = lineMap;
 		
 		makeDescreeteDepthsAndCutCorners();
 	}
@@ -217,14 +236,14 @@ public class LumarcaLib {
 	private void moveCamera() {
 //		if (moveCamera){
 
-		
-			pApplet.camera(DEFAULT_CAMERA_X * PApplet.sin(PApplet.PI/2f + cameraRot),
-					DEFAULT_CAMERA_Y + -100 * cameraRot,
-					DEFAULT_CAMERA_Z + cameraRot, 
-					DEFAULT_CAMERA_X, 
-					DEFAULT_CAMERA_Y, 
-					0, 
-					0, 1, 0);
+		pApplet.camera(
+				DEFAULT_CAMERA_X * PApplet.sin(PApplet.PI/2f + cameraRot), 
+				DEFAULT_CAMERA_Y + -100 * cameraRot, 
+				DEFAULT_CAMERA_Z, 
+				pApplet.width/2.0f, 
+				pApplet.height, 
+				0, 
+				0, -1, 0);
 	}
 	
 	private void makeDepthList(){
@@ -327,34 +346,14 @@ public class LumarcaLib {
 	
 	public void pre() {
 		pApplet.background(0);
-
-		offScreen.beginDraw();
-		offScreen.background(255, 0, 0);
-		offScreen.endDraw();
 		
 		moveCamera();
 		
-		pgl = (PGraphicsOpenGL) pApplet.g;
-
-		gl = pgl.beginGL();
-	}
-//	
-//	public void pre() {
-//		hasDrawn = true;
-//		
-////		offScreen.beginDraw();
-////		offScreen.background(255, 0, 0);
-////		offScreen.endDraw();
-//		
-//		moveCamera();
-//
 //		pgl = (PGraphicsOpenGL) pApplet.g;
-//		gl = pgl.beginGL();
-//		
-////		pgl = offScreen;
-//////
-////		gl = offScreen.gl;
-//	}
+//
+//		gl = pgl.gl;
+//		gl.glTranslatef(-pApplet.width/2.0f, -pApplet.height / 4.0f, 0);
+	}
 	
 	public void draw() {}
 	
@@ -365,32 +364,20 @@ public class LumarcaLib {
 			
 			lineMap.drawLine(gl, new PVector(1, 1, 1), lineMap.lines[lineNum].bottom, lineMap.lines[lineNum].top);
 			
-//			//line from Camera to Y points
-//			lineMap.drawIntersectLine(gl, lineNum);
-//
-//			//Z Points
-////			lineMap.draw3dPointOnZ(gl, lineNum);
-//
-//			//Y Points
-//			lineMap.draw3dPointOnY(gl, lineNum);
-////			
-////
-//			lineMap.drawVertLines(gl, lineNum);
-			
 		}
 
-		lineMap.drawFloorBox(gl);
+//		lineMap.drawFloorBox(gl);
 
 	}
 	
 	public void post() {
 		
-		if(pgl != null){
-//			offScreen.loadPixels();
-//			offScreen.loadTexture();
-//			pApplet.image(offScreen.getTexture(), 0, 0, pApplet.width, pApplet.height); 
-			pgl.endGL();
-		}
+//		if(pgl != null){
+////			offScreen.loadPixels();
+////			offScreen.loadTexture();
+////			pApplet.image(offScreen.getTexture(), 0, 0, pApplet.width, pApplet.height); 
+//			pgl.endGL();
+//		}
 	}
 
 	public void mouseEvent(MouseEvent e) {

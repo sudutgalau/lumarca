@@ -157,7 +157,8 @@ public class Util extends ProcessingObject {
 	}
 	
 	public static void makeVertex(GL gl, PVector center, PVector coord){
-		gl.glVertex3f(center.x + coord.x, center.y + coord.y, center.z + coord.z);
+		pApplet.vertex(center.x + coord.x, center.y + coord.y, center.z + coord.z);
+//		gl.glVertex3f(center.x + coord.x, center.y + coord.y, center.z + coord.z);
 	}
 	
 	public static void drawLine(GL gl, PVector color, PVector top, PVector bottom, LineMap lineMap){
@@ -166,53 +167,48 @@ public class Util extends ProcessingObject {
 //		float alt = pApplet.map(bottom.z, lineMap.maxPosition.z, lineMap.minPosition.z, 0f, 0.5f);
 		
 		
-		gl.glLineWidth(1f);
+//		gl.glLineWidth(1f);
 		
 		//Line
-		gl.glColor3f(color.x, color.y, color.z);
-		gl.glBegin(GL.GL_LINE_STRIP);
-		gl.glVertex3f(bottom.x,
+		pApplet.stroke(color.x * 255, color.y * 255, color.z * 255);
+//		gl.glBegin(GL.GL_LINE_STRIP);
+		pApplet.line(bottom.x,
 					  bottom.y,
-					  bottom.z);
-		
-		gl.glVertex3f(top.x,
+					  bottom.z,top.x,
 					top.y,
 					top.z);
-		gl.glEnd();
+//		gl.glEnd();
 		
 		//Bottom Dot
 		
 		if(top.y != lineMap.minPosition.y  && top.y != lineMap.maxPosition.y){
-			gl.glColor3f(1f,1f,1f);
+			pApplet.stroke(255, 255, 255);
 	
-			gl.glBegin(GL.GL_LINE_STRIP);
-			gl.glVertex3f(top.x,
+//			gl.glBegin(GL.GL_LINE_STRIP);
+			pApplet.line(top.x,
 					      top.y,
-						  top.z);
-	
-			
-			gl.glVertex3f(
+						  top.z,
 					top.x,
 					(top.y + DOT_HEIGHT),
 					top.z);
 			
-			gl.glEnd();
+//			gl.glEnd();
 		}
 		
 		//Bottom Dot
 		if(bottom.y != lineMap.minPosition.y  && bottom.y != lineMap.maxPosition.y){
-			gl.glColor3f(1f,1f,1f);
+			pApplet.stroke(255, 255, 255);
 	
-			gl.glBegin(GL.GL_LINE_STRIP);
+//			gl.glBegin(GL.GL_LINE_STRIP);
 			
-			gl.glVertex3f(bottom.x,
+			pApplet.line(bottom.x,
 					bottom.y,
-					bottom.z);
-			gl.glVertex3f(bottom.x,
+					bottom.z,
+					bottom.x,
 					(bottom.y + DOT_HEIGHT),
 					bottom.z);
 			
-			gl.glEnd();
+//			gl.glEnd();
 		}
 	}
 	
@@ -222,32 +218,45 @@ public class Util extends ProcessingObject {
 //		System.out.println(factor);
 		//Line
 		
-		float alt = pApplet.map(bottom.z, lineMap.maxPosition.z, lineMap.minPosition.z, 0f, 0.5f);
 		
-		gl.glColor3f(color.x, color.y, color.z);
-		gl.glBegin(GL.GL_LINE_STRIP);
-		gl.glVertex3f(bottom.x,
-					  bottom.y + bottom.y * (alt * alt),
-					  bottom.z);
-		
-		gl.glVertex3f(top.x,
-					top.y + top.y * (alt * alt),
+
+		pApplet.stroke(color.x * 255, color.y * 255, color.z * 255);
+//		gl.glBegin(GL.GL_LINE_STRIP);
+		pApplet.line(bottom.x,
+					  bottom.y,
+					  bottom.z,top.x,
+					top.y,
 					top.z);
 		
-		gl.glEnd();
+//		gl.glColor3f(color.x, color.y, color.z);
+//		gl.glBegin(GL.GL_LINE_STRIP);
+//		gl.glVertex3f(bottom.x,
+//					  bottom.y + bottom.y * (alt * alt),
+//					  bottom.z);
+//		
+//		gl.glVertex3f(top.x,
+//					top.y + top.y * (alt * alt),
+//					top.z);
+//		
+//		gl.glEnd();
 	}
 	
 	public static void drawPoint(GL gl, PVector coord){
-		gl.glColor3f(1f,1f,1f);
-
-		gl.glPointSize(5.0f);
-		gl.glBegin(GL.GL_POINTS);
 		
-		gl.glVertex3f(coord.x,
+		pApplet.point(coord.x,
 				coord.y,
 				coord.z);
 		
-		gl.glEnd();
+//		gl.glColor3f(1f,1f,1f);
+//
+//		gl.glPointSize(5.0f);
+//		gl.glBegin(GL.GL_POINTS);
+//		
+//		gl.glVertex3f(coord.x,
+//				coord.y,
+//				coord.z);
+//		
+//		gl.glEnd();
 	}
 	
 	public PVector rotateView(float angle, float x, float y, float z, PVector pos, Coord center)

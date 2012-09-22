@@ -62,21 +62,22 @@ public class TrianglePlane extends ProcessingObject {
 			Util.drawPoint(gl, coord);
 		}
 		
-		gl.glBegin(GL.GL_LINE_STRIP);
+		pApplet.noFill();
+		pApplet.beginShape();
 		Util.makeVertex(gl, center, one);
 		Util.makeVertex(gl, center, two);
 		Util.makeVertex(gl, center, three);
 		Util.makeVertex(gl, center, one);
-		gl.glEnd();
+		pApplet.endShape();
 	}
 	
 	public void draw(GL gl){
-		
-		gl.glBegin(GL.GL_POLYGON);
+
+		pApplet.beginShape();
 		Util.makeVertex(gl, center, one);
 		Util.makeVertex(gl, center, two);
 		Util.makeVertex(gl, center, three);
-		gl.glEnd();
+		pApplet.endShape();
 	}
 	
 	public void rotateOnX(float f){

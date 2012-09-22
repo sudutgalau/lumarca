@@ -77,7 +77,7 @@ public class Rectangle extends Shape {
 	}
 
 	@Override
-	public void setCenter(Coord center) {
+	public void setCenter(PVector center) {
 		for(SimpleShape shape: parts){
 			shape.setCenter(center);
 		}

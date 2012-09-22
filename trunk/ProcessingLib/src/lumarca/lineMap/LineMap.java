@@ -70,7 +70,9 @@ public class LineMap extends ProcessingObject{
 		this.farZ = farZ;
 		this.nearZ = 0;
 		
-		tolerance = (pApplet.width * pApplet.abs(farZ))/(lineNum * 50);
+		tolerance = (pApplet.width * pApplet.abs(farZ))/(lineNum * 10);
+		
+//		System.out.println("tolerance: " + tolerance);
 		
 		lineMap = this;
 		
@@ -221,14 +223,14 @@ public class LineMap extends ProcessingObject{
 	}
 
 	public List<Line> getShape(PVector color, Shape shape){
-		List<Line> interLines = new ArrayList<Line>();
+//		List<Line> interLines = new ArrayList<Line>();
+//		
+//		for(Line line: lines){
+////			System.out.println("shape.getIntersect(color, line): " + shape.getIntersect(color, line).size());
+//			interLines.addAll(shape.getIntersect(color, line));
+//		}
 		
-		for(Line line: lines){
-//			System.out.println("shape.getIntersect(color, line): " + shape.getIntersect(color, line).size());
-			interLines.addAll(shape.getIntersect(color, line));
-		}
-		
-		return interLines;
+		return shape.getIntersections(color);
 	}
 
 	public void drawShapes(GL gl, Coord color, List<Shape> shapes){
@@ -324,7 +326,9 @@ public class LineMap extends ProcessingObject{
 			
 			if(attempts == maxAttempts){
 				reset = true;
-				tolerance--;
+				tolerance-=0.1f;
+
+				System.out.println("tolerance: " + tolerance);
 				break;
 			}
 		}
@@ -347,7 +351,7 @@ public class LineMap extends ProcessingObject{
 	
 	public void makeLine(int i, float xPos, float z){
 
-		float y = pApplet.height/2;
+		float y = pApplet.height;
 		
 		PVector slope = new PVector(projectorX - (pApplet.width/(float)lineNum) * xPos, 0, projectorZ -nearZ);
 		slope.normalize();
